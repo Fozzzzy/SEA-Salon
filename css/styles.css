@@ -7,7 +7,6 @@
 }
 
 html {
-    background-color: black;
     scroll-behavior: smooth;
 }
 
@@ -16,9 +15,7 @@ a, button, li, select, label {
 }
 
 body {
-    background-color: wheat;
     padding-top: 91px;
-    height: 2000px;
 }
 
 header {
@@ -245,8 +242,7 @@ section#home {
 }
 
 section#services {
-    padding-top: 4rem;
-    padding-inline: 4.5rem;
+    padding: 5rem 4.5rem;
     background-color: white;
 }
 
@@ -256,6 +252,7 @@ section#services {
 }
 
 .services-list {
+    margin-bottom: 0.7rem;
     font-size: 1.6rem;
     font-weight: 500;
     font-family: 'Poppins';
@@ -294,7 +291,7 @@ section#services {
 }
 
 
-.service-more-btn {
+.service-more-btn-container {
     margin-top: 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -302,7 +299,7 @@ section#services {
     gap: 1.2rem;
 }
 
-.service-more-btn button {
+.service-more-btn {
     display: inline-block;
     position: relative;
     padding: 9px 25px;
@@ -313,22 +310,23 @@ section#services {
     margin-left: 10px;
     transition: all 0.3s ease;
     font-size: 18px;
+    will-change: transform;
 }
 
-.service-more-btn button:hover {
+.service-more-btn:hover {
     border: 1px solid #171717;
-    background-color: #fff;
+    background-color: #ffffff;
     color: #171717;
     padding-right: 30px;
     padding-left: 15px;
 }
 
-.service-more-btn button:active {
+.service-more-btn:active {
     transform: scale(0.94);
     transition: 0.001ms;
 }
 
-.service-more-btn button:after {
+.service-more-btn:after {
     content: '»';
     font-size: 30px;
     position: absolute;
@@ -339,8 +337,251 @@ section#services {
     display: none;
 }
 
-.service-more-btn button:hover:after {
+.service-more-btn:hover:after {
     opacity: 1;
     right: 10px;
     display: block;
 }
+
+section#profile {
+    padding: 7rem 4.5rem;
+    background-color: #130f0a;
+}
+
+.profile-header h1 {
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica, Arial;
+    font-weight: 500;
+    color: white;
+}
+
+.profile-header h2 {
+    font-family: 'Lato', 'Helvetica Neue', Helvetica, Arial;
+    font-size: 45px;
+    color: rgb(255, 246, 161);
+}
+
+section#contacts {
+    background-image: url(/images/wash.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.book-now-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contacts-container{
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+    flex-direction: column;
+
+    margin-bottom: 3rem;
+    backdrop-filter: blur(10px);
+    background: transparent;
+    min-width: 60vh;
+    min-height: 30vh;
+    padding: 30px;
+
+    border: none solid rgb(0, 0, 0);
+    border-radius: 4px;
+    box-shadow: 10px 10px 50px 5px rgb(0, 0, 0);
+}
+
+.contacts-container img {
+    width: 50px;
+    height: 50px;
+    margin-right: 15px;
+    margin-bottom: 10px;
+    transition: all 0.1s ease-in-out;
+    cursor:pointer;
+}
+
+.contacts-container img:hover {
+    transform: scale(1.2);
+}
+
+.contacts-container img:active {
+    transition: 0.1ms;
+    opacity: 0.7;
+}
+
+
+.contact-us-text h4 {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+    font-size: 30px;
+    font-weight: 500;
+    text-shadow: 0 0 5px rgb(255, 255, 255);
+}
+.contact-us-text p {
+    font-family: 'Poppins', sans-serif;
+    color: white;
+}
+
+
+.book-your-visit-btn {
+    padding: 20px 50px;
+    background-color: #171717;
+    color: rgb(255, 255, 255);
+    border: 0.1px solid rgb(0, 0, 0);
+    border-radius: 2px;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+
+.book-your-visit-btn:hover {
+    box-shadow: inset 400px 0 0 0 #ffffff;
+    transition: ease-in 0.3s;
+    transform: scale(1.1);
+    color: rgb(0, 0, 0);
+}
+
+.book-your-visit-btn:active {
+    transform: scale(1);
+    transition: 0.001ms;
+}
+
+footer {
+    padding-top: 45px;
+    padding-bottom: 50px;
+    padding-inline: 7rem;
+    height: 200px;
+    background-color: #ffffff;
+    border-top: 1px solid #ccc; /* Optional border */
+}
+
+.footer-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.footer-left img {
+    max-width: 175px; 
+    height: auto;
+    left: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.footer-right {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.footer-left p,  .footer-right p{
+    font-family: 'Poppins', 'Helvetica Neue', Serif;
+    color: grey;
+}
+
+.footer-right p {
+    margin-bottom: 10px;
+}
+
+.connect-with-us {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.connect-with-us img {
+    display: flex;
+    width: 20px;
+    height: 20px;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.copyright {
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+
+@media (max-width: 1200px) {
+    .slogan-container h1 {
+        font-size: 30px;
+        
+    }
+
+    .slogan-container h2 {
+        font-size: 39px;
+    }
+    
+    .slogan-container h3 {
+        font-size: 18px;
+    }
+}
+
+@media  (max-width: 1043px) {
+    .nav-links li a {
+        font-size: 13px;
+    }
+
+    .slogan-container h1 {
+        font-size: 28px;
+        
+    }
+
+    .slogan-container h2 {
+        font-size: 37px;
+    }
+
+    .slogan-container h3 {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 992px) {
+    .nav-links li a {
+        font-size: 12px;
+    }
+
+    .nav-links li b {
+        font-size: 2px;
+    }
+
+    .slogan-container h1 {
+        font-size: 20px;
+        
+    }
+
+    .slogan-container h2 {
+        font-size: 29px;
+    }
+
+    .slogan-container h3 {
+        font-size: 8px;
+    }
+}
+
+
+@media (max-width: 992px) {
+    .slogan-container h1 {
+        font-size: 20px;
+        
+    }
+
+    .slogan-container h2 {
+        font-size: 29px;
+    }
+
+    .slogan-container h3 {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 768px) {}
+
+@media (max-width: 576px) {}
