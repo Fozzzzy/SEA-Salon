@@ -15,9 +15,15 @@ a, button, li, select, label {
     cursor: pointer;
 }
 
+body {
+    background-color: wheat;
+    padding-top: 91px;
+    height: 2000px;
+}
+
 header {
     background-color: rgb(255, 255, 255);
-    padding: 10px 2%;
+    padding: 13px 2%;
     overflow: hidden;
     position: fixed;
     z-index: 1000;
@@ -25,11 +31,17 @@ header {
     left: 0;
     right: 0;
     min-width: 94px;
-    transition: box-shadow 0.3s ease-in-out;
+    transition: box-shadow 0.15s ease-in-out;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }   
+
+header.shadow {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    border-bottom: none !important;
+    z-index: 101;
+}
 
 .logo-container {
     display: flex;
@@ -43,6 +55,8 @@ header {
     max-width: 200px; 
     height: auto;
     left: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
 }
 
 .nav-container {
@@ -71,7 +85,7 @@ a, li, button {
 
 .nav-links li a {
     position: relative;
-    font-size: 14px;
+    font-size: 15px;
     transition: all 0.3s ease; 
 }
 
@@ -79,7 +93,7 @@ a, li, button {
     content:"";
     width: 0;
     height: 3px;
-    background-color: rgb(0, 0, 0);
+    background-color: rgb(231, 212, 5);
     position: absolute; 
     left: 0;
     bottom: -6px;
@@ -93,11 +107,12 @@ a, li, button {
 .nav-links li a:hover {
     opacity: 90%;
     color: rgb(0, 0, 0);
+    transition: 0.8s;
 }
 
 .nav-links li a:active {
     opacity: 0.5;
-    transition: 0.05s;
+    transition: 0.01s;
 }
 
 .login-button {
@@ -108,16 +123,224 @@ a, li, button {
     box-shadow: inset 0 0 0 0 #000000;
     border-radius: 2px;
     margin-left: 10px;
+    font-size: 16px;
     transition: all 0.3s ease;
 }
 
 .login-button:hover {
     box-shadow: inset 400px 0 0 0 #000000;
     transition: ease-in 0.3s;
-    color: rgb(255, 255, 255) !important;
+    transform: scale(1.05);
+    color: rgb(255, 246, 161);
 }
 
 .login-button:active {
     transform: scale(0.97);
-    transition: 0.01ms;
+    transition: 0.001ms;
+}
+
+section {
+    padding: 1rem 10%;
+    min-height: 90vh;
+}
+
+section#home {
+    background: url(../images/home_1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation: change 10s infinite ease-in-out;
+    position: relative;
+    z-index: 3;
+}
+
+.home-dark-overlay {
+    position: absolute;
+    background-color: black;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    opacity: 0.5;
+    z-index: 4;
+    /* background-color: transparent;
+    backdrop-filter: blur(100px); */
+}
+
+.slogan-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    z-index: 5;
+    min-width: 45vw;
+    min-height: 80vh;
+}
+
+.slogan-container h1 {
+    color: rgb(255, 246, 161);
+    font-size: 31px;
+    font-family: 'Lexend Exa', serif;
+    margin-bottom: 5px;
+    
+}
+
+.slogan-container h2 {
+    font-size: 44px;
+    color: white;
+    font-family: 'Libre Caslon Text', serif;
+    margin-bottom: 20px;
+}
+
+.slogan-container h3 {
+    color: rgb(255, 246, 161);
+    font-family: 'Lato', serif;
+    font-weight: 400;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.book-now-btn {
+    display: inline-block;
+    position: relative;
+    padding: 9px 25px;
+    background-color: #171717;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 2px;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+
+.book-now-btn:hover {
+    transform: scale(1.1);
+    background-color: #171717;
+    color: #ffffff;
+    padding-right: 30px;
+    padding-left: 15px;
+}
+
+.book-now-btn:active {
+    transform: scale(1);
+    transition: 0.001ms;
+}
+
+.book-now-btn:after {
+    content: '»';
+    font-size: 30px;
+    position: absolute;
+    opacity: 0;  
+    top: -1px;
+    right: -20px;
+    transition: all 0.3s ease;
+    display: none;
+}
+
+.book-now-btn:hover:after {
+    opacity: 1;
+    right: 10px;
+    display: block;
+}
+
+section#services {
+    padding-top: 4rem;
+    padding-inline: 4.5rem;
+    background-color: white;
+}
+
+.service-header {
+    display: flex;
+    align-items: center;
+}
+
+.services-list {
+    font-size: 1.6rem;
+    font-weight: 500;
+    font-family: 'Poppins';
+}
+
+.view-all {
+    font-size: 1rem;
+    font-weight: 500;
+    font-family: 'Poppins';
+}
+
+.service-image-grid {
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 1.2rem;
+}
+
+.service-image {
+    height: 24rem;
+    width: 100%;
+    object-fit: cover;
+    box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.3);
+}
+.service-desc {
+    margin-block: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    place-items: center;
+    gap: 1.2rem;
+}
+
+.service-desc p { 
+    font-size: 15px;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.service-more-btn {
+    margin-top: 1rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    place-items: center;
+    gap: 1.2rem;
+}
+
+.service-more-btn button {
+    display: inline-block;
+    position: relative;
+    padding: 9px 25px;
+    background-color: #171717;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 2px;
+    margin-left: 10px;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+
+.service-more-btn button:hover {
+    border: 1px solid #171717;
+    background-color: #fff;
+    color: #171717;
+    padding-right: 30px;
+    padding-left: 15px;
+}
+
+.service-more-btn button:active {
+    transform: scale(0.94);
+    transition: 0.001ms;
+}
+
+.service-more-btn button:after {
+    content: '»';
+    font-size: 30px;
+    position: absolute;
+    opacity: 0;  
+    top: -1px;
+    right: -20px;
+    transition: 0.3s;
+    display: none;
+}
+
+.service-more-btn button:hover:after {
+    opacity: 1;
+    right: 10px;
+    display: block;
 }

@@ -10,31 +10,100 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
 
+    <!--Libre Caslon Text-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!--Lexend Exa-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!--Lato-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
         <div class="logo-container">
-            <img class="logo-img" src="images/logo.png" alt="logo">
+            <a href="#">
+                <img class="logo-img" src="images/logo.png" alt="logo">
+            </a>
         </div>
         <div class="nav-container">
             <ul class="nav-links">
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">Services</a></li>
+                <li><a href="#">Home</a></li>
+                <li><a href="#services">Services</a></li>
                 <li><a href="#about">Stylists</a></li>
                 <li><a href="#skills">Reviews</a></li>
                 <li><a href="#">Contacts</a></li>
-                <li><a href="#">Book Now</a></li>
+                <li><a href="#"><b>BOOK NOW</b></a></li>
             </ul>
         </div>
         <div class="right">
-            <a class="login" href="#">
-                <button class="login-button">Login</button>
-            </a>
+            <button class="login-button">Login</button>
         </div>
     </header>
-    <section class="">
+    <section id="home">
+        <div class="home-container">
+            <div class="home-dark-overlay"></div>
+            <div class="slogan-container">
+                <h1>
+                    SEA SALON
+                </h1>
+                <h3>
+                    HAIR &#183 NAIL &#183 FACIAL
+                </h3>
+                <h2>
+                    BEAUTY AND ELEGANCE REDEFINED
+                </h2>
+                <button class="book-now-btn">
+                    BOOK NOW
+                </button>
+            </div>
+        </div>
+    </section>
+    <section id="services">
+        <div class="service-header">
+            <p class="services-list">Services We Offer</p>
+        </div>
+        <div class="service-container">
+            <div class="service-image-grid">
+                <div class="service-box">
+                    <img class="service-image" src="images/haircut.png" alt="haircut">
+                </div>
+                <div class="service-box">
+                    <img class="service-image" src="images/hairstyling.jpg" alt="haircut">
+                </div>
+                <div class="service-box">
+                    <img class="service-image" src="images/manicure.jpg" alt="haircut">
+                </div>
+                <div class="service-box">
+                    <img class="service-image" src="images/facial.jpg" alt="haircut">
+                </div>
+            </div>
+            <div class="service-desc">
+                <p>Haircut</p>
+                <p>Hairstyling</p>
+                <p>Manicure & Pedicure</p>
+                <p>Facial Treatments</p>
+            </div>
+            <div class="service-more-btn">
+                <button>MORE</button>
+                <button>MORE</button>
+                <button>MORE</button>
+                <button>MORE</button>
+            </div>
+        </div>
 
     </section>
+        
+
+
+    <script src="js/shadow.js"></script>
 </body>
 </html>
