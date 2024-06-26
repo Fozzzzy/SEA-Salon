@@ -4,7 +4,6 @@
     margin-inline: auto;
     position: relative;
     height: 500px;
-    margin-top: 3rem;
     overflow: hidden;
     mask-image: linear-gradient(
         to right,
@@ -40,7 +39,7 @@
     height: 350px;
     border-radius: 8px;
     position: absolute;
-    left: max(200px * 8, 100%);
+    left: max(210px * 8, 100%);
     animation-name: scrollLeft;
     animation-duration: 18s;
     animation-timing-function: linear;
@@ -101,4 +100,24 @@
 
 .item:hover {
     background-color: #3b3127;
+}
+
+.item:active {
+    background-color: #4d4033;
+    transition: all 0.001ms;
+}
+
+
+@media (max-width: 992px) {
+    .item {
+        transform: scale(0.8);
+        left: max(160px * 8, 100%);
+    }
+}
+
+@media (max-width: 850px) {
+    .item {
+        transform: scale(0.7);
+        left: max(135px * 8, 100%);
+    }
 }

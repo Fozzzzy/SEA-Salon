@@ -15,7 +15,8 @@ a, button, li, select, label {
 }
 
 body {
-    padding-top: 91px;
+    background-color: black !important;
+    margin-top: 57px;
 }
 
 header {
@@ -42,11 +43,9 @@ header.shadow {
 
 .logo-container {
     display: flex;
+    align-items: center !important;
     justify-content: center;
-    align-items: center;
-    position: relative;
 }
-
 
 .logo-img {
     max-width: 200px; 
@@ -71,22 +70,22 @@ a, li, button {
     font-family: "Poppins";
 }
 
-.nav-links {
+.nav-menu {
     display: flex;
     list-style: none;
 }
 
-.nav-links li {
+.nav-menu li {
     padding: 0 25px;
 }
 
-.nav-links li a {
+.nav-menu li a {
     position: relative;
     font-size: 15px;
     transition: all 0.3s ease; 
 }
 
-.nav-links li a::after {
+.nav-menu li a::after {
     content:"";
     width: 0;
     height: 3px;
@@ -97,22 +96,22 @@ a, li, button {
     transition: 0.4s; /* Underline Transition */
 }
 
-.nav-links li a:hover::after {
+.nav-menu li a:hover::after {
     width: 100%;
 }
 
-.nav-links li a:hover {
+.nav-menu li a:hover {
     opacity: 90%;
     color: rgb(0, 0, 0);
     transition: 0.8s;
 }
 
-.nav-links li a:active {
+.nav-menu li a:active {
     opacity: 0.5;
     transition: 0.01s;
 }
 
-.login-button {
+.login-btn {
     padding: 9px 30px;
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
@@ -124,16 +123,31 @@ a, li, button {
     transition: all 0.3s ease;
 }
 
-.login-button:hover {
+.login-btn:hover {
     box-shadow: inset 400px 0 0 0 #000000;
     transition: ease-in 0.3s;
     transform: scale(1.05);
     color: rgb(255, 246, 161);
 }
 
-.login-button:active {
+.login-btn:active {
     transform: scale(0.97);
     transition: 0.001ms;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: black;
 }
 
 section {
@@ -149,6 +163,7 @@ section#home {
     animation: change 10s infinite ease-in-out;
     position: relative;
     z-index: 3;
+    min-height: 95vh;
 }
 
 .home-dark-overlay {
@@ -179,8 +194,8 @@ section#home {
     color: rgb(255, 246, 161);
     font-size: 31px;
     font-family: 'Lexend Exa', serif;
+    margin-top: 3rem;
     margin-bottom: 5px;
-    
 }
 
 .slogan-container h2 {
@@ -242,7 +257,7 @@ section#home {
 }
 
 section#services {
-    padding: 5rem 4.5rem;
+    padding: 6rem 4.5rem 6.5rem 4.5rem;
     background-color: white;
 }
 
@@ -300,8 +315,6 @@ section#services {
 }
 
 .service-more-btn {
-    display: inline-block;
-    position: relative;
     padding: 9px 25px;
     background-color: #171717;
     color: #fff;
@@ -317,30 +330,11 @@ section#services {
     border: 1px solid #171717;
     background-color: #ffffff;
     color: #171717;
-    padding-right: 30px;
-    padding-left: 15px;
 }
 
 .service-more-btn:active {
-    transform: scale(0.94);
+    transform: scale(0.9);
     transition: 0.001ms;
-}
-
-.service-more-btn:after {
-    content: '»';
-    font-size: 30px;
-    position: absolute;
-    opacity: 0;  
-    top: -1px;
-    right: -20px;
-    transition: 0.3s;
-    display: none;
-}
-
-.service-more-btn:hover:after {
-    opacity: 1;
-    right: 10px;
-    display: block;
 }
 
 section#profile {
@@ -384,14 +378,14 @@ section#contacts {
     flex-direction: column;
 
     margin-bottom: 3rem;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(15px);
     background: transparent;
     min-width: 60vh;
     min-height: 30vh;
     padding: 30px;
 
     border: none solid rgb(0, 0, 0);
-    border-radius: 4px;
+    border-radius: 6px;
     box-shadow: 10px 10px 50px 5px rgb(0, 0, 0);
 }
 
@@ -457,20 +451,13 @@ footer {
     height: 200px;
     background-color: #ffffff;
     border-top: 1px solid #ccc; /* Optional border */
+    width: 100%;
 }
 
 .footer-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-}
-
-.footer-left img {
-    max-width: 175px; 
-    height: auto;
-    left: 10px;
-    cursor: pointer;
-    margin-bottom: 10px;
 }
 
 .footer-right {
@@ -480,12 +467,13 @@ footer {
     flex-direction: column;
 }
 
-.footer-left p,  .footer-right p{
+.footer-left p,  .footer-right p {
     font-family: 'Poppins', 'Helvetica Neue', Serif;
     color: grey;
 }
 
-.footer-right p {
+.connect-with-us-text {
+    margin-top: 15px;
     margin-bottom: 10px;
 }
 
@@ -506,10 +494,10 @@ footer {
 .copyright {
     margin-top: 10px;
     font-size: 14px;
+    text-align: right;
 }
 
-
-@media (max-width: 1200px) {
+@media (max-width: 1200px) { 
     .slogan-container h1 {
         font-size: 30px;
         
@@ -522,10 +510,19 @@ footer {
     .slogan-container h3 {
         font-size: 18px;
     }
+
+    .logo-img {
+        max-width: 175px; 
+    }
+
+    .login-btn {
+        padding: 6px 25px;
+        font-size: 15px;
+    }
 }
 
 @media  (max-width: 1043px) {
-    .nav-links li a {
+    .nav-menu li a {
         font-size: 13px;
     }
 
@@ -541,47 +538,147 @@ footer {
     .slogan-container h3 {
         font-size: 16px;
     }
+
+    .logo-img {
+        max-width: 160px; 
+    }
+
+    .login-btn {
+        padding: 6px 20px;
+        font-size: 13px;
+    }
+
+    .footer-left p {
+        font-size: 14px;
+    }
+
+    .copyright {
+        font-size: 12px;
+    }
 }
 
 @media (max-width: 992px) {
-    .nav-links li a {
+    .nav-menu li a {
+        font-size: 10px;
+    }
+
+    .slogan-container h2 {
+        font-size: 29px;
+    }
+
+    .logo-img {
+        max-width: 110px; 
+    }
+
+    .login-btn {
+        padding: 5px 18px;
+        font-size: 10px;
+    }
+
+    .footer-left p {
+        font-size: 11px;
+    }
+    .copyright {
+        font-size: 9px;
+    }
+
+    .connect-with-us-text {
         font-size: 12px;
     }
 
-    .nav-links li b {
-        font-size: 2px;
+    .service-desc p {
+        font-size: 13px;
     }
 
-    .slogan-container h1 {
-        font-size: 20px;
-        
+    .service-more-btn {
+        font: 15px;
+        padding: 7px 20px;
     }
+
+    .profile-header h1 {
+        font-size: 18px;
+    }
+
+    .profile-header h2 {
+        font-size: 35px;
+    }
+}
+
+@media (max-width: 768px) {
 
     .slogan-container h2 {
-        font-size: 29px;
+        font-size: 22px;
     }
 
-    .slogan-container h3 {
+    .footer-left p {
         font-size: 8px;
     }
-}
 
-
-@media (max-width: 992px) {
-    .slogan-container h1 {
-        font-size: 20px;
-        
+    .copyright {
+        font-size: 7px;
     }
 
-    .slogan-container h2 {
-        font-size: 29px;
+    .service-desc p {
+        font-size: 9px;
     }
 
-    .slogan-container h3 {
+    .service-more-btn {
         font-size: 10px;
+        padding: 6px 18px;
+    }
+
+    .book-your-visit-btn {
+        font-size: 14px;
+    }
+
+    /* hamburger */
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger .bar {
+        display: block;
+        width: 25px;
+        height: 3px;
+        margin: 5px auto;
+        transition: all 0.3s ease-in-out;
+        background-color: black;
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -150%;
+        top: 57px;
+        gap: 0;
+        flex-direction: column;
+        background-color: #efefef;
+        width: 100%;
+        text-align: center;
+        transition: left 0.3s;
+    }
+
+    .login-btn {
+        display: none;
+    }
+
+    .nav-menu.active, .login-btn.active {
+        left: 0;
+    }
+
+    .nav-menu li {
+        margin: 16px 0;
     }
 }
-
-@media (max-width: 768px) {}
 
 @media (max-width: 576px) {}

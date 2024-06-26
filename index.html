@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SEA Salon</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 
     <!-- Poppins -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,29 +26,29 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="css/media.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/scroller.css">
 </head>
 <body>
     <header>
         <div class="logo-container">
-            <a href="#">
-                <img class="logo-img" src="images/logo.png" alt="logo">
-            </a>
+            <img class="logo-img" src="images/logo1.png" alt="logo">
         </div>
-        <div class="nav-container">
-            <ul class="nav-links">
+        <nav class="nav-container">
+            <ul class="nav-menu">
                 <li><a href="#">Home</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#profile">Stylists</a></li>
-                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
                 <li><a href="#contacts">Contacts</a></li>
-                <li><a href="#booking"><b>BOOK NOW</b></a></li>
+                <li><a href="#booking">Bookings</a></li>
             </ul>
-        </div>
-        <div class="right">
-            <button class="login-button">Login</button>
+            <button class="login-btn">Login</button>
+        </nav>
+        <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
         </div>
     </header>
     <section id="home">
@@ -71,7 +72,7 @@
     </section>
     <section id="services">
         <div class="service-header">
-            <p class="services-list">Services We Offer</p>
+            <p class="services-list">Services List</p>
         </div>
         <div class="service-container">
             <div class="service-image-grid">
@@ -165,13 +166,13 @@
     <footer>
         <div class="footer-container">
             <div class="footer-left">
-                    <img src="images/logo.png" alt="logo">
+                    <img class="logo-img" src="images/logo.png" alt="logo">
                 <div>
                     <p>SEA Salon: The No.1 Salon for Redefining Beauty and Elegance</p>
                 </div>
             </div>
             <div class="footer-right">
-                <p>CONNECT WITH US!</p>
+                <p class="connect-with-us-text">CONNECT WITH US!</p>
                 <div class="connect-with-us">
                     <img src="images/footer/whatsapp-black.png" alt="whatsapp">
                     <img src="images/footer/mail.png" alt="mail">
@@ -182,6 +183,6 @@
         </div>
     </footer>
 
-    <script src="js/shadow.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
