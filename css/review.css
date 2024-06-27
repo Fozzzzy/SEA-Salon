@@ -1,0 +1,149 @@
+body {
+    background: url(../images/wash.jpg);
+    background-size: cover;
+    background-repeat: repeat-y;
+    background-position: center;
+}
+
+section#customer-review {
+    position: relative;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.review-container {
+    display: flex;
+    flex-direction: column;
+    padding: 50px;
+    backdrop-filter: blur(15px);
+    background: rgba(0, 0, 0, 0.4);
+    max-width: 100%;
+    min-height: 80vh;
+
+    border: none solid rgb(0, 0, 0);
+    gap: 1rem;
+    border-radius: 1rem;
+    box-shadow: 10px 10px 50px 5px rgb(0, 0, 0);
+}
+
+.header-row h1 {
+    letter-spacing: 2px;
+    font-size: 35px;
+    color: rgb(255, 246, 161);
+    font-family: 'Poppins', sans-serif;
+}
+
+.header-row h2 {
+    font-size: 20px;
+    font-weight: 400;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 60px;
+    flex-wrap: wrap;
+    font-family: 'Poppins', sans-serif;
+}
+
+.reviewer-name, .review-rating {
+    background-color: rgb(234,235,236);
+    margin-bottom: 10px;
+    font-size: 16px;
+    padding: 4px 5px;
+    border: none;
+    border-radius: 4px;
+    transition: all 0.1s ease-in-out;
+}
+.reviewer-name:hover,
+.review-rating:hover {
+    background-color: rgb(255, 255, 255);
+}
+
+.reviewer-name:focus,
+.review-rating:focus {
+    outline: none;
+}
+
+.form label {
+    font-size: 18px;
+    cursor: auto;
+}
+
+.review-input {
+    min-height: 45px;
+    margin-top: 6px;
+    margin-right: 4px;
+    width: 100%;
+    padding: 1px 1rem 1px 15px;
+    position: relative;
+    background-color: rgb(234,235,236);
+    font-size: 18px;
+
+    border: none;
+    border-radius: 4px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.5);
+    transition: all 0.1s ease-in-out;
+
+    flex: 10;
+}
+
+.review-input:hover {
+    box-shadow: 0px 0px 10px rgb(0, 0, 0, 0.6);
+    background-color: rgb(255, 255, 255);
+}
+
+.review-input:focus {
+    outline: none;
+}
+
+.write-review-btn {
+    height: 36px;
+    width: 125px;
+    background-color: rgb(36, 36, 36);
+    color: rgb(255, 255, 255);
+    border: 0.1px solid rgb(255, 255, 255);
+    border-radius: 4px;
+    font-size: 15px;
+    padding: 5px 10px;
+    transition: all 0.1s ease;
+}
+
+.write-review-btn:hover {
+    background-color: rgb(20, 20, 20);
+}
+
+.write-review-btn:active {
+    background-color: rgb(0, 0, 0);
+}
+
+
+.review-content-container {
+    background-color: rgb(245, 245, 245);
+    color: black;
+    border-radius: 20px;
+    padding: 20px;
+    margin-bottom: 15px;
+    font-family: 'Roboto', Arial, sans-serif;
+    overflow-wrap: break-word;
+    font-size: 16px;
+}
+
+.first-row {
+    display: flex;
+    align-items: center;
+
+}
+
+.currDate {
+    margin-left: 10px;
+    font-size: 14px;
+    color: grey;
+}

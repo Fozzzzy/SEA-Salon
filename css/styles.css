@@ -15,7 +15,6 @@ a, button, li, select, label {
 }
 
 body {
-    background-color: black !important;
     margin-top: 57px;
 }
 
@@ -111,8 +110,8 @@ a, li, button {
     transition: 0.01s;
 }
 
-.login-btn {
-    padding: 9px 30px;
+.logout-btn {
+    padding: 9px 26px;
     background-color: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
     border: 1px solid rgb(0, 0, 0);
@@ -123,14 +122,14 @@ a, li, button {
     transition: all 0.3s ease;
 }
 
-.login-btn:hover {
+.logout-btn:hover {
     box-shadow: inset 400px 0 0 0 #000000;
     transition: ease-in 0.3s;
     transform: scale(1.05);
     color: rgb(255, 246, 161);
 }
 
-.login-btn:active {
+.logout-btn:active {
     transform: scale(0.97);
     transition: 0.001ms;
 }
@@ -257,7 +256,7 @@ section#home {
 }
 
 section#services {
-    padding: 6rem 4.5rem 6.5rem 4.5rem;
+    padding: 6rem 4.5rem 10rem 4.5rem;
     background-color: white;
 }
 
@@ -306,7 +305,7 @@ section#services {
 }
 
 
-.service-more-btn-container {
+/* .service-more-btn-container {
     margin-top: 1rem;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -335,7 +334,7 @@ section#services {
 .service-more-btn:active {
     transform: scale(0.9);
     transition: 0.001ms;
-}
+} */
 
 section#profile {
     padding: 7rem 4.5rem;
@@ -515,7 +514,7 @@ footer {
         max-width: 175px; 
     }
 
-    .login-btn {
+    .logout-btn {
         padding: 6px 25px;
         font-size: 15px;
     }
@@ -543,7 +542,7 @@ footer {
         max-width: 160px; 
     }
 
-    .login-btn {
+    .logout-btn {
         padding: 6px 20px;
         font-size: 13px;
     }
@@ -570,7 +569,7 @@ footer {
         max-width: 110px; 
     }
 
-    .login-btn {
+    .logout-btn {
         padding: 5px 18px;
         font-size: 10px;
     }
@@ -668,11 +667,11 @@ footer {
         transition: left 0.3s;
     }
 
-    .login-btn {
+    .logout-btn {
         display: none;
     }
 
-    .nav-menu.active, .login-btn.active {
+    .nav-menu.active, .logout-btn.active {
         left: 0;
     }
 
@@ -681,4 +680,37 @@ footer {
     }
 }
 
-@media (max-width: 576px) {}
+@media (max-width: 576px) {
+    .slogan-container h1 {
+        font-size: 14px;
+    }
+
+    .slogan-container h2 {
+        font-size: 18px;
+    }
+
+    .slogan-container h3 {
+        font-size: 6px;
+    }
+
+    .service-desc p {
+        font-size: 6px;
+    }
+
+    .book-now-btn {
+        padding: 6px 18px;
+        font-size: 10px;
+    }
+    
+    .book-now-btn:after {
+        content: '»';
+        font-size: 20px;
+        top: -2.5px;
+        right: 4px;
+    }
+
+    .book-now-btn:hover {
+        padding-right: 22px;
+        padding-left: 10px;
+    }
+}

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Review</title>
+    <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+
+    <!-- Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+
+    <!--Libre Caslon Text-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Text:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+    <!--Lexend Exa-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend+Exa:wght@100..900&display=swap" rel="stylesheet">
+    
+    <!--Lato-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/review.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/scroller.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img class="logo-img" src="images/logo1.png" alt="logo">
+        </div>
+        <nav class="nav-container">
+            <ul class="nav-menu">
+                <li><a href="index.html#">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#profile">Stylists</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="index.html#contacts">Contacts</a></li>
+                <li><a href="#booking">Bookings</a></li>
+            </ul>
+            <button class="logout-btn">Logout</button>
+        </nav>
+        <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+        </div>
+    </header>
+    <section id="customer-review">
+        <div class="review-container">
+            <div class="header-row">
+                <h1>Customer Reviews and Testimonials</h1>
+                <h2>Checkout the reviews below for our Salon</h2>
+            </div>
+
+            <div class="form">
+                <div>
+                    <p>Name: </p>
+                    <input id="name" type="text" class="reviewer-name" placeholder="Your name" maxlength="20">
+                </div>
+                <div>
+                    <p>Rating&#x2B50;&#xFE0F: </p>
+                    <input id="rating" type="text" class="review-rating" placeholder="Rate from 1-5..." maxlength="1">
+                    
+                </div>
+                <div>
+                    <p>Comment: </p>
+                    <input id="review" type="text" class="review-input" placeholder="Review us! ..." maxlength="70">
+                </div>
+            </div>
+
+            
+        <button class="write-review-btn">       
+            Write Review
+        </button>
+
+        <div class="review-list"></div> 
+        </div>
+    </section>
+    <script src="js/review.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</body>
+</html>

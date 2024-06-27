@@ -46,6 +46,7 @@
     animation-iteration-count: infinite;
     transition: all 0.3s ease;
     cursor: pointer; 
+    will-change: background-color;
 }
 
 .item1 {
