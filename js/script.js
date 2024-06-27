@@ -1,6 +1,7 @@
 // HAMBURGER MENU
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
+const bookButtons = document.querySelectorAll('.book-now-btn, .book-your-visit-btn');
 
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
@@ -29,3 +30,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+// BOOK BUTTONS
+bookButtons.forEach(button => {
+button.addEventListener('click', () => {
+    window.location.href = 'reservation.html';
+    });
+});

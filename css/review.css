@@ -15,6 +15,7 @@ section#customer-review {
 }
 
 .review-container {
+    margin-top: 1.5rem;
     display: flex;
     flex-direction: column;
     padding: 50px;
@@ -22,7 +23,6 @@ section#customer-review {
     background: rgba(0, 0, 0, 0.4);
     max-width: 100%;
     min-height: 80vh;
-
     border: none solid rgb(0, 0, 0);
     gap: 1rem;
     border-radius: 1rem;
@@ -36,11 +36,10 @@ section#customer-review {
     font-family: 'Poppins', sans-serif;
 }
 
-.header-row h2 {
-    font-size: 20px;
+h2 {
+    font-size: 16px;
     font-weight: 400;
-    letter-spacing: 4px;
-    margin-bottom: 20px;
+    letter-spacing: 3px;
     font-family: 'Poppins', sans-serif;
 }
 
@@ -54,13 +53,16 @@ section#customer-review {
 }
 
 .reviewer-name, .review-rating {
-    background-color: rgb(234,235,236);
+    min-height: 35px;
+    width: 30%;
+    padding: 1px 1rem 1px 10px;
+    position: relative;
+    background-color: rgb(243, 243, 243);
+    font-size: 18px;
     margin-bottom: 10px;
-    font-size: 16px;
-    padding: 4px 5px;
-    border: none;
+    border: 1px solid black;
     border-radius: 4px;
-    transition: all 0.1s ease-in-out;
+    transition: all 0.2s ease-in-out;
 }
 .reviewer-name:hover,
 .review-rating:hover {

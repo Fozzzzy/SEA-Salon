@@ -103,4 +103,4 @@ function resetLocalStorage() {
     renderReview(); 
 }
 
-// resetLocalStorage()
+resetLocalStorage()
