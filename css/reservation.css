@@ -1,12 +1,16 @@
+body {
+    background-color: rgb(255, 253, 240);
+}
+
 section#reservation {
     font-family: 'Poppins', sans-serif;
     margin-top: 5.5rem;
-    background-color: rgb(255, 253, 240);
 }
 
 .reservation-form-container {
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 
 .reservation-form-container p {
@@ -16,10 +20,11 @@ section#reservation {
 }
 
 input {
-    margin-top: 10px;
+    margin: 10px 0;
 }
 
-input#reservation-name, input#reservation-phone-number {
+input#reservation-name,
+input#reservation-phone-number {
     min-height: 45px;
     width: 30%;
     padding: 1px 1rem 1px 15px;
@@ -36,7 +41,8 @@ input#reservation-phone-number {
     margin-bottom: 10px;
 }
 
-.reservation-form-container input:focus {
+input#reservation-name:focus, 
+input#reservation-phone-number:focus {
     background-color: rgb(255, 255, 255);
     outline: none;
 }
@@ -48,15 +54,11 @@ input#reservation-phone-number {
 
 .service-dropdown {
     width: 30%;
-    margin-bottom: 10px;
 }
 .booking-time-dropdown, .booking-date {
     width: 15%;
 }
 
-option {
-    font-size: 18px;
-}
 
 .service-dropdown:focus {
     outline: none;
@@ -80,4 +82,3 @@ option {
 .reservation-book-now-btn:active {
     color: rgb(206, 200, 136)
 }
-

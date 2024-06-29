@@ -44,8 +44,8 @@
                 <li><a href="index.html#contacts">Contacts</a></li>
                 <li><a href="#">Bookings</a></li>
             </ul>
-            <button class="logout-btn">Logout</button>
         </nav>
+        <button class="logout-btn" id="logout">Logout</button>
         <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -58,8 +58,8 @@
             <p>NAME: </p>
             <input id="reservation-name" type="text" placeholder="Your name" maxlength="35">
 
-            <p>PHONE NUMBER(ACTIVE) </p>
-            <input id="reservation-phone-number" type="text" placeholder="Your name" maxlength="35"> 
+            <p>PHONE NUMBER</p>
+            <input id="reservation-phone-number" type="text" placeholder="Your phone number (active)" maxlength="35"> 
             
             <p>SELECT A SERVICE</p>
             <select id="service" class="service-dropdown">
@@ -88,6 +88,10 @@
                 </select>
             </div>
             <button class="reservation-book-now-btn">BOOK NOW</button>
+        </div>
+    </section>
+    <section id="past-reservations">
+        <div class="review-list"></div> 
         </div>
     </section>
     <footer>

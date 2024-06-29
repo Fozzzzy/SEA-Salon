@@ -1,4 +1,4 @@
-*,
+*, 
 *::after,
 *::before {
     box-sizing: border-box;
@@ -218,7 +218,7 @@ section#home {
     padding: 9px 25px;
     background-color: #171717;
     color: rgb(255, 255, 255);
-    border: 1px solid rgb(255, 255, 255);
+    border: 1.5px solid rgb(255, 255, 255);
     border-radius: 2px;
     margin-left: 10px;
     transition: all 0.3s ease;
@@ -286,7 +286,7 @@ section#services {
 }
 
 .service-image {
-    height: 24rem;
+    height: 29rem;
     width: 100%;
     object-fit: cover;
     box-shadow: 2.5px 2.5px 5px rgba(0, 0, 0, 0.3);
@@ -303,38 +303,6 @@ section#services {
     font-size: 15px;
     font-family: 'Poppins', sans-serif;
 }
-
-
-/* .service-more-btn-container {
-    margin-top: 1rem;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    place-items: center;
-    gap: 1.2rem;
-}
-
-.service-more-btn {
-    padding: 9px 25px;
-    background-color: #171717;
-    color: #fff;
-    border: 1px solid #fff;
-    border-radius: 2px;
-    margin-left: 10px;
-    transition: all 0.3s ease;
-    font-size: 18px;
-    will-change: transform;
-}
-
-.service-more-btn:hover {
-    border: 1px solid #171717;
-    background-color: #ffffff;
-    color: #171717;
-}
-
-.service-more-btn:active {
-    transform: scale(0.9);
-    transition: 0.001ms;
-} */
 
 section#profile {
     padding: 7rem 4.5rem;
@@ -449,7 +417,7 @@ footer {
     padding-inline: 7rem;
     height: 200px;
     background-color: #ffffff;
-    border-top: 1px solid #ccc; /* Optional border */
+    border-top: 1px solid #ccc; 
     width: 100%;
 }
 
