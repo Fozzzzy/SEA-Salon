@@ -13,8 +13,6 @@ document.querySelectorAll("li").forEach(n => n.addEventListener('click', () => {
     navMenu.classList.remove('active');
 }));
 
-
-
 // NAVBAR SHADOW
 document.addEventListener('DOMContentLoaded', () => {
     var headers = document.querySelectorAll('header');
@@ -36,3 +34,16 @@ button.addEventListener('click', () => {
     window.location.href = 'reservation.html';
     });
 });
+
+// Logout
+const logoutButton = document.querySelector('#logout');
+logoutButton.addEventListener('click', (e) => {
+    window.location.href = 'login.html';
+});
+
+const loginMessage = localStorage.getItem('loginMessage');
+if (loginMessage) {
+    alert(loginMessage);
+    // Clear the stored message after displaying
+    localStorage.removeItem('loginMessage');
+}
