@@ -31,5 +31,5 @@ document.addEventListener('DOMContentLoaded', () => {
 // Logout
 const logoutButton = document.querySelector('.logout-btn');
 logoutButton.addEventListener('click', () => {
-    window.location.href = 'login.html';
+    window.location.href = 'index.html';
 });
