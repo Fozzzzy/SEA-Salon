@@ -21,34 +21,76 @@ const app = initializeApp(firebaseConfig);
 const db = getDatabase(app);
 const auth = getAuth(app);
 
+// Check Admin
+const adminCredentials = {
+    fullName: "Thomas N",
+    email: "thomas.n@compfest.id",
+    phoneNumber: "08123456789",
+    password: "Admin123",
+};
+
+// Generate userId from 1 for every new user signing in
+let userIdIncrement = localStorage.getItem('userId') || 1;
 
 // Sign-up
 document.querySelector('.sign-in-btn').addEventListener('click', async (e) => {
     e.preventDefault();
 
-    const username = document.getElementById('username').value;
+    const fullName = document.getElementById('full-name').value;
     const email = document.getElementById('email').value;
     const phoneNumber = document.getElementById('phone-number').value;
     const password = document.getElementById('password').value;
 
+    // Validate input
+    if (!fullName || !email || !phoneNumber || !password) {
+        alert('Please fill in all required fields.');
+        return; 
+    }
+
     console.log("Button clicked. Trying to write data to Firebase...");
 
     try {
-        // write operation for debugging
-        await set(ref(db, 'test'), {
-            testField: "testValue"
-        });
+        // Check if the entered credentials match the admin credentials
+        if (fullName === adminCredentials.fullName && email === adminCredentials.email && phoneNumber === adminCredentials.phoneNumber && password === adminCredentials.password) {
+             // Declare userId and role for Admin account
+            adminCredentials.userId = 0;
+            adminCredentials.role = "Admin";
+            
+            // Write admin data to firebase
+            await set(ref(db, 'users/admin/' + fullName), {
+                userId: adminCredentials.userId,
+                fullName: adminCredentials.fullName,
+                email: adminCredentials.email,
+                phoneNumber: adminCredentials.phoneNumber,
+                password: adminCredentials.password,
+                role: adminCredentials.role
+            });
+            
+            window.location.href = 'index.html'; // Redirect to admin page
+            localStorage.setItem('loginMessage', 'Admin Login Successful!');
+        } else { 
+            const userId = userIdIncrement;
+            const role = "Customer";
 
-        // write user data
-        await set(ref(db, 'users/' + username), {
-            username: username,
-            email: email,
-            phoneNumber: phoneNumber,
-            password: password
-        });
-        window.location.href = 'index.html';
-        localStorage.setItem('loginMessage', 'Login Successful!');
+            // Write user data to Firebase
+            await set(ref(db, 'users/customers/' + fullName), {
+                userId: userId,
+                fullName: fullName,
+                email: email,
+                phoneNumber: phoneNumber,
+                password: password,
+                role: role
+            });
+
+            // Increment userId for next user
+            userIdIncrement += 1;
+
+            window.location.href = 'index.html';
+            localStorage.setItem('userId', userIdIncrement);
+            localStorage.setItem('loginMessage', 'Login Successful!');
+        }
     } catch (error) {
+        // Check if error writing to database
         console.error('Error writing to Firebase Realtime Database:', error);
         alert('Login failed. Please try again.');
     }

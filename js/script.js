@@ -41,9 +41,10 @@ logoutButton.addEventListener('click', (e) => {
     window.location.href = 'login.html';
 });
 
+
+// Login message
 const loginMessage = localStorage.getItem('loginMessage');
 if (loginMessage) {
     alert(loginMessage);
-    // Clear the stored message after displaying
     localStorage.removeItem('loginMessage');
 }
