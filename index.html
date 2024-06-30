@@ -39,9 +39,9 @@
                 <li><a href="#">Home</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#profile">Stylists</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
+                <li><a href="login.html">Reviews</a></li>
                 <li><a href="#contacts">Contacts</a></li>
-                <li><a href="reservation.html">Bookings</a></li>
+                <li><a href="login.html">Bookings</a></li>
             </ul>
         </nav>
         <button class="logout-btn" id="login">Login</button>
@@ -171,6 +171,14 @@
     </footer>
     <script src="js/script.js"></script>
     <script>
+        // BOOK BUTTONS
+        const bookButtons = document.querySelectorAll('.book-now-btn, .book-your-visit-btn');
+        bookButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                window.location.href = "login.html";
+            });
+        });
+
         // Login
         const loginButton = document.querySelector('#login');
         loginButton.addEventListener('click', () => {

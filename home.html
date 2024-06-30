@@ -93,8 +93,6 @@
         <div class="profile-header">
             <h1>PROFILE</h1>
             <h2>Our Stylists</h2>
-
-
             <div class="wrapper">
                 <div class="item item1">
                     <img src="images/stylists/andrew.png" alt="andrew" loading="lazy">
@@ -171,11 +169,20 @@
     </footer>
     <script src="js/script.js"></script>
     <script>
-        // Logout
-        const logoutButton = document.querySelector('.logout-btn');
-        logoutButton.addEventListener('click', () => {
-            window.location.href = 'login.html';
+        // BOOK BUTTONS
+        const bookButtons = document.querySelectorAll('.book-now-btn, .book-your-visit-btn');
+        bookButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                window.location.href = "reservation.html";
+            });
         });
+
+        // Login message
+        const loginMessage = localStorage.getItem('loginMessage');
+        if (loginMessage) {
+            alert(loginMessage);
+            localStorage.removeItem('loginMessage');
+        }
     </script>
 </body>
 </html>

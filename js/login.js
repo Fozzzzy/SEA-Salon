@@ -68,7 +68,7 @@ document.querySelector('.sign-in-btn').addEventListener('click', async (e) => {
                 password: adminCredentials.password,
                 role: adminCredentials.role
             });
-            localStorage.setItem('loginMessage', 'Admin Login Successful!');
+            localStorage.setItem('loginMessage', `Admin Login Successful, Welcome ${fullName}!`);
         } else { 
             const userId = userIdIncrement;
             role = 'Customer';
@@ -87,7 +87,7 @@ document.querySelector('.sign-in-btn').addEventListener('click', async (e) => {
 
             window.location.href = 'home.html';
             localStorage.setItem('userId', userIdIncrement);
-            localStorage.setItem('loginMessage', 'Login Successful!');
+            localStorage.setItem('loginMessage', `Login Successful, Welcome ${fullName}!`);
         }
         setTimeout(() => {
             document.getElementById('loading-screen').style.display = 'none';

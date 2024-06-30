@@ -1,16 +1,9 @@
-// Loading screen
-document.getElementById('loading-screen').style.display = 'flex';
-setTimeout(() => {
-    document.getElementById('loading-screen').style.display = 'none';
-}, 1000); 
-
 // HAMBURGER MENU
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
-const bookButtons = document.querySelectorAll('.book-now-btn, .book-your-visit-btn');
-
 
 hamburger.addEventListener('click', () => {
+    console.log('hamburger clicked');
     hamburger.classList.toggle('active');
     navMenu.classList.toggle('active');
 });
@@ -35,16 +28,8 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
-// BOOK BUTTONS
-bookButtons.forEach(button => {
-button.addEventListener('click', () => {
-    window.location.href = 'reservation.html';
-    });
+// Logout
+const logoutButton = document.querySelector('.logout-btn');
+logoutButton.addEventListener('click', () => {
+    window.location.href = 'login.html';
 });
-
-// Login message
-const loginMessage = localStorage.getItem('loginMessage');
-if (loginMessage) {
-    alert(loginMessage);
-    localStorage.removeItem('loginMessage');
-}
