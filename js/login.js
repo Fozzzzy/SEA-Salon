@@ -93,7 +93,7 @@ document.querySelector('.sign-in-btn').addEventListener('click', async (e) => {
             document.getElementById('loading-screen').style.display = 'none';
             // Redirect to index page
             window.location.href = 'index.html';
-        }, 10000); 
+        }, 2000); 
 
         // Save role (customers/admin)
         localStorage.setItem('role', role);
