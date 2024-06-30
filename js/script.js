@@ -1,7 +1,14 @@
+// Loading screen
+document.getElementById('loading-screen').style.display = 'flex';
+setTimeout(() => {
+    document.getElementById('loading-screen').style.display = 'none';
+}, 1000); 
+
 // HAMBURGER MENU
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
 const bookButtons = document.querySelectorAll('.book-now-btn, .book-your-visit-btn');
+
 
 hamburger.addEventListener('click', () => {
     hamburger.classList.toggle('active');
@@ -35,12 +42,11 @@ button.addEventListener('click', () => {
     });
 });
 
-// Logout
-const logoutButton = document.querySelector('#logout');
-logoutButton.addEventListener('click', (e) => {
+// Login
+const loginButton = document.querySelector('#login');
+loginButton.addEventListener('click', () => {
     window.location.href = 'login.html';
 });
-
 
 // Login message
 const loginMessage = localStorage.getItem('loginMessage');

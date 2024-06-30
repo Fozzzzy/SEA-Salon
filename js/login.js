@@ -23,14 +23,15 @@ const auth = getAuth(app);
 
 // Check Admin
 const adminCredentials = {
-    fullName: "Thomas N",
-    email: "thomas.n@compfest.id",
-    phoneNumber: "08123456789",
-    password: "Admin123",
+    fullName: 'Thomas N',
+    email: 'thomas.n@compfest.id',
+    phoneNumber: '08123456789',
+    password: 'Admin123',
 };
 
 // Generate userId from 1 for every new user signing in
 let userIdIncrement = localStorage.getItem('userId') || 1;
+let role;
 
 // Sign-up
 document.querySelector('.sign-in-btn').addEventListener('click', async (e) => {
@@ -47,14 +48,16 @@ document.querySelector('.sign-in-btn').addEventListener('click', async (e) => {
         return; 
     }
 
-    console.log("Button clicked. Trying to write data to Firebase...");
+    console.log('Button clicked. Trying to write data to Firebase...');
+    document.getElementById('loading-screen').style.display = 'flex';
 
     try {
         // Check if the entered credentials match the admin credentials
         if (fullName === adminCredentials.fullName && email === adminCredentials.email && phoneNumber === adminCredentials.phoneNumber && password === adminCredentials.password) {
              // Declare userId and role for Admin account
             adminCredentials.userId = 0;
-            adminCredentials.role = "Admin";
+            adminCredentials.role = 'Admin';
+            role = 'Admin';
             
             // Write admin data to firebase
             await set(ref(db, 'users/admin/' + fullName), {
@@ -65,12 +68,10 @@ document.querySelector('.sign-in-btn').addEventListener('click', async (e) => {
                 password: adminCredentials.password,
                 role: adminCredentials.role
             });
-            
-            window.location.href = 'index.html'; // Redirect to admin page
             localStorage.setItem('loginMessage', 'Admin Login Successful!');
         } else { 
             const userId = userIdIncrement;
-            const role = "Customer";
+            role = 'Customer';
 
             // Write user data to Firebase
             await set(ref(db, 'users/customers/' + fullName), {
@@ -81,7 +82,6 @@ document.querySelector('.sign-in-btn').addEventListener('click', async (e) => {
                 password: password,
                 role: role
             });
-
             // Increment userId for next user
             userIdIncrement += 1;
 
@@ -89,10 +89,19 @@ document.querySelector('.sign-in-btn').addEventListener('click', async (e) => {
             localStorage.setItem('userId', userIdIncrement);
             localStorage.setItem('loginMessage', 'Login Successful!');
         }
+        setTimeout(() => {
+            document.getElementById('loading-screen').style.display = 'none';
+            // Redirect to index page
+            window.location.href = 'index.html';
+        }, 10000); 
+
+        // Save role (customers/admin)
+        localStorage.setItem('role', role);
     } catch (error) {
         // Check if error writing to database
         console.error('Error writing to Firebase Realtime Database:', error);
         alert('Login failed. Please try again.');
+        document.getElementById('loading-screen').style.display = 'none';
     }
 });
 

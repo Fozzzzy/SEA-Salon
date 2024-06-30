@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="css/reservation.css">
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/scroller.css">
+    <link rel="stylesheet" href="css/loader.css">
 </head>
 <body>
     <header>
@@ -113,6 +114,17 @@
             </div>
         </div>
     </footer>
+    <div id="loading-screen">
+        <div class="loader"></div>
+    </div>
     <script src="js/script.js"></script>
+    <script src="js/reservation.js"></script>
+    <script>
+        // Logout
+        const logoutButton = document.querySelector('.logout-btn');
+        logoutButton.addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+    </script>
 </body>
 </html>
