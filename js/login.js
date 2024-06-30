@@ -85,14 +85,14 @@ document.querySelector('.sign-in-btn').addEventListener('click', async (e) => {
             // Increment userId for next user
             userIdIncrement += 1;
 
-            window.location.href = 'index.html';
+            window.location.href = 'home.html';
             localStorage.setItem('userId', userIdIncrement);
             localStorage.setItem('loginMessage', 'Login Successful!');
         }
         setTimeout(() => {
             document.getElementById('loading-screen').style.display = 'none';
-            // Redirect to index page
-            window.location.href = 'index.html';
+            // Redirect to home page
+            window.location.href = 'home.html';
         }, 2000); 
 
         // Save role (customers/admin)

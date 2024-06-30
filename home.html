@@ -44,7 +44,7 @@
                 <li><a href="reservation.html">Bookings</a></li>
             </ul>
         </nav>
-        <button class="logout-btn" id="login">Login</button>
+        <button class="logout-btn" id="logout">Logout</button>
         <div class="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -170,5 +170,12 @@
         </div>
     </footer>
     <script src="js/script.js"></script>
+    <script>
+        // Logout
+        const logoutButton = document.querySelector('.logout-btn');
+        logoutButton.addEventListener('click', () => {
+            window.location.href = 'login.html';
+        });
+    </script>
 </body>
 </html>

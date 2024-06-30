@@ -42,12 +42,6 @@ button.addEventListener('click', () => {
     });
 });
 
-// Login
-const loginButton = document.querySelector('#login');
-loginButton.addEventListener('click', () => {
-    window.location.href = 'login.html';
-});
-
 // Login message
 const loginMessage = localStorage.getItem('loginMessage');
 if (loginMessage) {
