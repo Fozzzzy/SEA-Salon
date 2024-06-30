@@ -1,35 +1,46 @@
-let reservationList =  JSON.parse(localStorage.getItem('reservations')) || [];
+// Get role (customer/admin)
+role = localStorage.getItem('role');
+console.log(`Role: ${role}`);
 
-const buttonElement = document.querySelector('.reservation-book-now-btn');
-const reservationName = document.querySelector('.reservation-name').value;
-const reservationPhone = document.querySelector('.reservation-phone-number').value;
-const selectedService = document.querySelector('.service-dropdown').value;
-const selectedDate = document.querySelector('.booking-date').value;
-const selectedTime = document.querySelector('.booking-time-dropdown').value;
+// Visibility of past reservations
+if (role === 'Customer') {
+    document.getElementById('past-reservations').style.display = 'none';
+} else if (role === 'Admin') {
+    document.getElementById('past-reservations').style.display = 'flex';
+}
 
+let reservationList = JSON.parse(localStorage.getItem('reservations')) || [];
 
-buttonElement.addEventListener('click', addReservation);
+const bookNowButton = document.querySelector('.reservation-book-now-btn');
+const nameInput = document.getElementById('reservation-name');
+const phoneNumberInput = document.getElementById('reservation-phone-number');
+const serviceDropdown = document.getElementById('service');
+const dateInput = document.getElementById('bookingDate');
+const timeDropdown = document.getElementById('bookingTime');
+const reservationListContainer = document.querySelector('.reservation-list');
+const clearButton = document.querySelector('.clear-reservation-btn');
 
-jnmrenderReservation();
+bookNowButton.addEventListener('click', addReservation);
 
-function renderReservation() {
+let reservationNumber;
+function renderReservations() {
     let reservationHTML = '';
 
-    reservationList.forEach((reviewObject) => {
-        const reservation = reservationObject.reser;
-        const reviewerName = reviewObject.name;
-        const rating = reviewObject.rating;
-        const date = reviewObject.date;
-
+    reservationList.forEach((reservation, index) => {
+        const { name, phoneNumber, service, date, time } = reservation;
+        reservationNumber = index + 1;
         let tempHTML = `
-        <div class="review-content-container">
+        <div class="reservation-content-container">
             <div class="first-row">
-                <p class="name">${reviewerName},</p>
-                <p class="currDate">${date}</p>
+                <p class="reservation-number"><u>Reservation No.${reservationNumber}</u></p>
+                <p class="name">Name: ${name}</p>
+                <p class="phone-number">Phone Number: ${phoneNumber}</p>
             </div>
-            <p class="rating">${rating} / 5 &#x2B50;&#xFE0F;</p>
+            <p class="service">Service: ${service}</p>
             <div class="second-row">
-                <p class="review-content">${review}</p>
+                <p class="date">Date: ${date}</p>
+                <p class="time">Time: ${time}</p>
+                <br>
             </div>
         </div>`;
 
@@ -39,70 +50,44 @@ function renderReservation() {
     reservationListContainer.innerHTML = reservationHTML;
 }
 
-function addReview() {
-    let reviewText = inputElement.value.trim();
-    let reviewerName = reviewerNameElement.value.trim();
-    let rating = ratingElement.value.trim();
+function addReservation() {
+    const name = nameInput.value.trim();
+    const phoneNumber = phoneNumberInput.value.trim();
+    const service = serviceDropdown.value;
+    const date = dateInput.value;
+    const time = timeDropdown.value;
 
-    if (!reviewText || !reviewerName || !rating) {
-        alert('Please fill in all fields: Review, Name, and Rating.');
+    if (!name || !phoneNumber || !service || !date || !time) {
+        alert('Please fill in all fields: Name, Phone Number, Service, Date, and Time.');
         return;
     }
 
-    if (!validateRating(rating)) {
-        alert('Please enter a valid rating between 1 and 5.');
-        return;
-    }
-
-    const newReview = {
-        name: reviewerName,
-        rating: rating,
-        date: getCurrentDate(),
-        review: reviewText
+    const newReservation = {
+        name,
+        phoneNumber,
+        service,
+        date,
+        time
     };
 
-    reservationList.push(newReview);
+    reservationList.push(newReservation);
 
-    inputElement.value = '';
-    reviewerNameElement.value = '';
-    ratingElement.value = '';
+    nameInput.value = '';
+    phoneNumberInput.value = '';
+    serviceDropdown.value = '';
+    dateInput.value = '';
+    timeDropdown.value = '';
 
-    localStorage.setItem('reviews', JSON.stringify(reservationList));
-    renderReservation();
+    localStorage.setItem('reservations', JSON.stringify(reservationList));
+    renderReservations();
 }
 
-function getCurrentDate() {
-    const currentDate = new Date();
-    
-    const year = currentDate.getFullYear();
-    const month = ('0' + (currentDate.getMonth() + 1)).slice(-2);
-    const day = ('0' + currentDate.getDate()).slice(-2);
 
-    return `${year}-${month}-${day}`;
-}
-
-function validateRating(rating) {
-    const parsedRating = Number(rating);
-
-    if (parsedRating >= 1 && parsedRating <= 5) {
-        return true; 
-    }
-    return false; 
-}
-
-inputElement.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-        addReview();
-    }
-});
-
-
-
-//FUNCTION TO RESET FROM ADMIN
 function resetLocalStorage() {
-    localStorage.removeItem('reviews');
-    reservationList = []; 
-    renderReservation(); 
+    localStorage.removeItem('reservations');
+    reservationList = [];
+    renderReservations();
 }
+clearButton.addEventListener('click', resetLocalStorage);
 
-// resetLocalStorage()
+renderReservations();
