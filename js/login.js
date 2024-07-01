@@ -19,17 +19,8 @@ const app = initializeApp(firebaseConfig);
 // Get reference to database services
 const db = getDatabase(app);
 
-// Check Admin
-const adminCredentials = {
-    fullName: 'Thomas N',
-    email: 'thomas.n@compfest.id',
-    phoneNumber: '08123456789',
-    password: 'Admin123',
-};
-
 // Generate userId from 1 for every new user signing in
 let userIdIncrement = localStorage.getItem('userId') || 1;
-let role;
 
 // Sign Up move Window
 document.querySelector('.register-btn').addEventListener('click', () => {
@@ -56,26 +47,39 @@ document.querySelector('#login').addEventListener('click', async (e) => {
 
 async function loginUser(email, password) {
     try {
-        const usersRef = ref(db, 'users/customers');
-        const snapshot = await get(usersRef);
+        const customersRef = ref(db, 'users/customers');
+        const customersSnapshot = await get(customersRef);
 
-        if (snapshot.exists()) {
-            const users = snapshot.val();
-            for (const userKey in users) {
-                if (users.hasOwnProperty(userKey)) {
-                    const user = users[userKey];
-                    if (user.email === email && user.password === password) {
-                        // Login successful
-                        localStorage.setItem('userId', user.userId);
-                        localStorage.setItem('role', user.role);
-                        localStorage.setItem('loginMessage', `Login Successful, Welcome ${user.fullName}!`);
+        // Check in admin
+        if (email === 'thomas.n@compfest.id' && password === 'Admin123') {
+            // Admin login successful
+            localStorage.setItem('userId', 'admin');
+            localStorage.setItem('role', 'Admin');
+            localStorage.setItem('loginMessage', 'Admin Login Successful');
+            window.location.href = 'home.html'; // Redirect to home page
+            return true;
+        }
+
+        // Check in customers
+        else if (customersSnapshot.exists()) {
+            const customers = customersSnapshot.val();
+            for (const customerKey in customers) {
+                if (customers.hasOwnProperty(customerKey)) {
+                    const customer = customers[customerKey];
+                    if (customer.email === email && customer.password === password) {
+                        // Customer login successful
+                        localStorage.setItem('userId', customer.userId);
+                        localStorage.setItem('role', 'Customer');
+                        localStorage.setItem('loginMessage', `Login Successful, Welcome ${customer.fullName}!`);
                         window.location.href = 'home.html'; // Redirect to home page
                         return true;
                     }
                 }
             }
         }
-        // If no matching user or incorrect credentials
+        
+
+        // If incorrect credentials
         alert('Invalid email or password. Please try again.');
         return false;
         

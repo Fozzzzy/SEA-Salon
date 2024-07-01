@@ -31,7 +31,7 @@ const clearButton = document.querySelector('.clear-reservation-btn');
 renderReservations();
 
 // Get role (customer/admin)
-role = localStorage.getItem('role');
+let role = localStorage.getItem('role');
 console.log(`Role: ${role}`);
 
 // Visibility of past reservations
