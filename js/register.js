@@ -85,7 +85,6 @@ document.querySelector('.register-btn').addEventListener('click', async (e) => {
             // Increment userId for next user
             userIdIncrement += 1;
 
-            window.location.href = 'home.html';
             localStorage.setItem('userId', userIdIncrement);
             localStorage.setItem('loginMessage', `Login Successful, Welcome ${fullName}!`);
         }

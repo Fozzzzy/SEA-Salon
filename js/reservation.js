@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, push, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, push, set, onValue, remove } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 // Web Firebase configuration
 const firebaseConfig = {
@@ -29,6 +29,17 @@ const clearButton = document.querySelector('.clear-reservation-btn');
 
 // Initial rendering of reservations on page load
 renderReservations();
+
+// Get role (customer/admin)
+role = localStorage.getItem('role');
+console.log(`Role: ${role}`);
+
+// Visibility of past reservations
+if (role === 'Customer') {
+    document.getElementById('past-reservations').style.display = 'none';
+} else if (role === 'Admin') {
+    document.getElementById('past-reservations').style.display = 'flex';
+}
 
 // Event listener for booking a reservation
 bookNowButton.addEventListener('click', addReservation);
@@ -76,7 +87,6 @@ function renderReservations() {
     });
 }
 
-
 // Function to add a new reservation
 async function addReservation() {
     const name = nameInput.value;
@@ -90,6 +100,17 @@ async function addReservation() {
         alert('Please fill in all fields: Name, Phone Number, Service, Date, and Time.');
         return;
     }
+
+    // Date validation (Check if date chosen is in the past)
+    let inputDate = new Date(date);
+    let inputTime = time.split(':');
+    inputDate.setHours(parseInt(inputTime[0]),parseInt(inputTime[1]));
+
+    var currentdate = new Date();
+    if (inputDate < currentdate){
+        alert('Datetime has passed, please reenter a valid input');
+        return;
+    };
 
     // Declare new reservation
     const newReservation = {
@@ -154,6 +175,7 @@ function showModal(newReservation) {
 
 // Function to clear all past reservations from the database
 async function clearReservations() {
+    console.log("test");
     const reservationsRef = ref(db, 'reservations');
 
     // Remove all reservations
@@ -166,5 +188,3 @@ async function clearReservations() {
     }
 }
 
-// Check if date chosen is in the past
-let inputDate = new Date(dataReserve)
