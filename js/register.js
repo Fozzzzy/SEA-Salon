@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+import { getDatabase, ref, set, get } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 // Web Firebase configuration
@@ -52,7 +52,32 @@ document.querySelector('.register-btn').addEventListener('click', async (e) => {
     document.getElementById('loading-screen').style.display = 'flex';
 
     try {
-        // Check if the entered credentials match the admin credentials
+        const customersRef = ref(db, 'users/customers');
+
+        // Check if email already exists in customers 
+        const customersSnapshot = await get(customersRef);
+        if (customersSnapshot.exists()) {
+            const customers = customersSnapshot.val();
+            for (const customerKey in customers) {
+                if (customers.hasOwnProperty(customerKey)) {
+                    const customer = customers[customerKey];
+                    if (customer.email === email) {
+                        alert('Email already exists. Please use a different email.');
+                        document.getElementById('loading-screen').style.display = 'none';
+                        return;
+                    }
+                }
+            }
+        }
+
+        // Check if email already exists in admin
+        if (email === 'thomas.n@compfest.id') {
+            alert('Email already exists. Please use a different email.');
+            document.getElementById('loading-screen').style.display = 'none';
+            return;
+        };
+
+        // Check if the entered credentials match admin credentials
         if (fullName === adminCredentials.fullName && email === adminCredentials.email && phoneNumber === adminCredentials.phoneNumber && password === adminCredentials.password) {
              // Declare userId and role for Admin account
             adminCredentials.userId = 0;
@@ -68,7 +93,6 @@ document.querySelector('.register-btn').addEventListener('click', async (e) => {
                 password: adminCredentials.password,
                 role: adminCredentials.role
             });
-            localStorage.setItem('loginMessage', `Admin Login Successful, Welcome ${fullName}!`);
         } else { 
             const userId = userIdIncrement;
             role = 'Customer';
@@ -86,7 +110,6 @@ document.querySelector('.register-btn').addEventListener('click', async (e) => {
             userIdIncrement += 1;
 
             localStorage.setItem('userId', userIdIncrement);
-            localStorage.setItem('loginMessage', `Login Successful, Welcome ${fullName}!`);
         }
         setTimeout(() => {
             document.getElementById('loading-screen').style.display = 'none';
@@ -99,7 +122,7 @@ document.querySelector('.register-btn').addEventListener('click', async (e) => {
     } catch (error) {
         // Check if error writing to database
         console.error('Error writing to Firebase Realtime Database:', error);
-        alert('Login failed. Please try again.');
+        alert('Register failed. Please try again.');
         document.getElementById('loading-screen').style.display = 'none';
     }
 });
