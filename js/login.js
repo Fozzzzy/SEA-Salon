@@ -2,7 +2,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/fireba
 import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
-// Your web app's Firebase configuration
+// Web Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyBkbI2FtxAQJwkITY22ige80ZxvTPeUHro",
     authDomain: "seasalon-34f4b.firebaseapp.com",

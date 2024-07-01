@@ -12,7 +12,6 @@ renderReview();
 
 function renderReview() {
     let reviewHTML = '';
-
     reviewList.forEach((reviewObject) => {
         const review = reviewObject.review;
         const reviewerName = reviewObject.name;
@@ -93,8 +92,6 @@ inputElement.addEventListener('keydown', (event) => {
         addReview();
     }
 });
-
-
 
 //FUNCTION TO RESET FROM ADMIN
 function resetLocalStorage() {

@@ -63,7 +63,6 @@
             <input id="reservation-phone-number" type="text" placeholder="Your phone number (active)" maxlength="35"> 
             
             <p>SELECT A SERVICE</p>
-            <li><a href="#" id="add-new-service">Add New Service</a></li>
             <select id="service" class="service-dropdown">
                 <option value="Haircuts and Styling">Haircuts and Styling</option>
                 <option value="Manicure & Pedicure">Manicure and Pedicure</option>
@@ -89,6 +88,13 @@
                 </select>
             </div>
             <button class="reservation-book-now-btn">BOOK NOW</button>
+        </div>
+        <!--Modal Popup-->
+        <div id="reservationModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p id="modalMessage"></p>
+            </div>
         </div>
     </section>
     <section id="past-reservations">

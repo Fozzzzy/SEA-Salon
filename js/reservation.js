@@ -80,8 +80,34 @@ function addReservation() {
 
     localStorage.setItem('reservations', JSON.stringify(reservationList));
     renderReservations();
+
+    showModal(newReservation);
 }
 
+function showModal(newReservation) {
+    const modal = document.getElementById('reservationModal');
+    const modalMessage = document.getElementById('modalMessage');
+    const closeBtn = document.querySelector('.close');
+
+    modalMessage.innerHTML = `
+    <p><b>Your reservation has been successfully booked!</b></p>
+    <p>Name: ${newReservation.name}</p>
+    <p>Date: ${newReservation.date}</p>
+    <p>Time: ${newReservation.time}</p>
+    <p>Service: ${newReservation.service}</p>`;
+
+    modal.style.display = 'flex';
+
+    closeBtn.onclick = function() {
+        modal.style.display = 'none';
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.style.display = 'none';
+        }
+    }
+}
 
 function resetLocalStorage() {
     localStorage.removeItem('reservations');
@@ -91,3 +117,4 @@ function resetLocalStorage() {
 clearButton.addEventListener('click', resetLocalStorage);
 
 renderReservations();
+
