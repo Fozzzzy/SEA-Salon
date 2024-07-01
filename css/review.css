@@ -19,7 +19,7 @@ section#customer-review {
     display: flex;
     flex-direction: column;
     padding: 50px;
-    backdrop-filter: blur(15px);
+    backdrop-filter: blur(25px);
     background: rgba(0, 0, 0, 0.4);
     max-width: 100%;
     min-height: 80vh;
@@ -39,7 +39,7 @@ section#customer-review {
 h2 {
     font-size: 16px;
     font-weight: 400;
-    letter-spacing: 3px;
+    letter-spacing: 2px;
     font-family: 'Poppins', sans-serif;
 }
 

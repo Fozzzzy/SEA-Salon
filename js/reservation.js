@@ -1,16 +1,23 @@
-// Get role (customer/admin)
-role = localStorage.getItem('role');
-console.log(`Role: ${role}`);
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, push, set, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
-// Visibility of past reservations
-if (role === 'Customer') {
-    document.getElementById('past-reservations').style.display = 'none';
-} else if (role === 'Admin') {
-    document.getElementById('past-reservations').style.display = 'flex';
-}
+// Web Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBkbI2FtxAQJwkITY22ige80ZxvTPeUHro",
+    authDomain: "seasalon-34f4b.firebaseapp.com",
+    projectId: "seasalon-34f4b",
+    storageBucket: "seasalon-34f4b.appspot.com",
+    messagingSenderId: "707554349089",
+    appId: "1:707554349089:web:1726668d9e4f9606361360",
+    measurementId: "G-KHBE00KB82",
+    databaseURL: "https://seasalon-34f4b-default-rtdb.asia-southeast1.firebasedatabase.app/"
+};
 
-let reservationList = JSON.parse(localStorage.getItem('reservations')) || [];
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
+// Get DOM elements
 const bookNowButton = document.querySelector('.reservation-book-now-btn');
 const nameInput = document.getElementById('reservation-name');
 const phoneNumberInput = document.getElementById('reservation-phone-number');
@@ -20,70 +27,106 @@ const timeDropdown = document.getElementById('bookingTime');
 const reservationListContainer = document.querySelector('.reservation-list');
 const clearButton = document.querySelector('.clear-reservation-btn');
 
+// Initial rendering of reservations on page load
+renderReservations();
+
+// Event listener for booking a reservation
 bookNowButton.addEventListener('click', addReservation);
 
+// Event listener for clearing past reservation
+clearButton.addEventListener('click', clearReservations);
+
+// Function to render reservations
 let reservationNumber;
+
 function renderReservations() {
-    let reservationHTML = '';
+    const reservationsRef = ref(db, 'reservations');
+    onValue(reservationsRef, (snapshot) => {
+        const reservations = snapshot.val();
+        let reservationHTML = '';
 
-    reservationList.forEach((reservation, index) => {
-        const { name, phoneNumber, service, date, time } = reservation;
-        reservationNumber = index + 1;
-        let tempHTML = `
-        <div class="reservation-content-container">
-            <div class="first-row">
-                <p class="reservation-number"><u>Reservation No.${reservationNumber}</u></p>
-                <p class="name">Name: ${name}</p>
-                <p class="phone-number">Phone Number: ${phoneNumber}</p>
-            </div>
-            <p class="service">Service: ${service}</p>
-            <div class="second-row">
-                <p class="date">Date: ${date}</p>
-                <p class="time">Time: ${time}</p>
-                <br>
-            </div>
-        </div>`;
+        if (reservations) {
+            Object.values(reservations).forEach((reservation, index) => {
+                const name = reservation.name;
+                const phoneNumber = reservation.phoneNumber;
+                const service = reservation.service;
+                const date = reservation.date;
+                const time = reservation.time;
 
-        reservationHTML += tempHTML;
+                reservationNumber = index + 1;
+                let tempHTML = `
+                <div class="reservation-content-container">
+                    <div class="first-row">
+                        <p class="reservation-number"><u>Reservation No.${reservationNumber}</u></p>
+                        <p class="name">Name: ${name}</p>
+                        <p class="phone-number">Phone Number: ${phoneNumber}</p>
+                    </div>
+                    <p class="service">Service: ${service}</p>
+                    <div class="second-row">
+                        <p class="date">Date: ${date}</p>
+                        <p class="time">Time: ${time}</p>
+                        <br>
+                    </div>
+                </div>`;
+
+                reservationHTML += tempHTML;
+            });
+        }
+        reservationListContainer.innerHTML = reservationHTML;
     });
-
-    reservationListContainer.innerHTML = reservationHTML;
 }
 
-function addReservation() {
-    const name = nameInput.value.trim();
+
+// Function to add a new reservation
+async function addReservation() {
+    const name = nameInput.value;
     const phoneNumber = phoneNumberInput.value.trim();
     const service = serviceDropdown.value;
     const date = dateInput.value;
     const time = timeDropdown.value;
 
+    // Validate input fields
     if (!name || !phoneNumber || !service || !date || !time) {
         alert('Please fill in all fields: Name, Phone Number, Service, Date, and Time.');
         return;
     }
 
+    // Declare new reservation
     const newReservation = {
-        name,
-        phoneNumber,
-        service,
-        date,
-        time
+        name: name,
+        phoneNumber: phoneNumber,
+        service: service,
+        date: date,
+        time: time
     };
 
-    reservationList.push(newReservation);
+    try {
+        const reservationsRef = ref(db, 'reservations');
+        const newReservationRef = push(reservationsRef);
 
-    nameInput.value = '';
-    phoneNumberInput.value = '';
-    serviceDropdown.value = '';
-    dateInput.value = '';
-    timeDropdown.value = '';
+        // Write new reservation data to Firebase
+        await set(newReservationRef, newReservation);
 
-    localStorage.setItem('reservations', JSON.stringify(reservationList));
-    renderReservations();
+        // Show modal for successful booking
+        showModal(newReservation);
 
-    showModal(newReservation);
+        // Clear input fields after successful submission
+        nameInput.value = '';
+        phoneNumberInput.value = '';
+        serviceDropdown.value = '';
+        dateInput.value = '';
+        timeDropdown.value = '';
+
+        // Re-render reservations to include the new one
+        renderReservations();
+
+        console.log('Reservation added to Firebase successfully');
+    } catch (error) {
+        console.error('Error adding reservation to Firebase:', error);
+    }
 }
 
+// Function to display modal pop-up with reservation details
 function showModal(newReservation) {
     const modal = document.getElementById('reservationModal');
     const modalMessage = document.getElementById('modalMessage');
@@ -109,12 +152,16 @@ function showModal(newReservation) {
     }
 }
 
-function resetLocalStorage() {
-    localStorage.removeItem('reservations');
-    reservationList = [];
-    renderReservations();
+// Function to clear all past reservations from the database
+async function clearReservations() {
+    const reservationsRef = ref(db, 'reservations');
+
+    // Remove all reservations
+    try {
+        await remove(reservationsRef);
+        console.log('Reservations cleared from Firebase successfully');
+        renderReservations();
+    } catch (error) {
+        console.error('Error clearing reservations from Firebase:', error);
+    }
 }
-clearButton.addEventListener('click', resetLocalStorage);
-
-renderReservations();
-

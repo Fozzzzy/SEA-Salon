@@ -39,7 +39,7 @@ document.querySelector('.sign-in-btn').addEventListener('click', async (e) => {
 
     const fullName = document.getElementById('full-name').value;
     const email = document.getElementById('email').value;
-    const phoneNumber = document.getElementById('phone-number').value;
+    const phoneNumber = document.getElementById('phone-number').value.trim();
     const password = document.getElementById('password').value;
 
     // Validate input
@@ -59,7 +59,7 @@ document.querySelector('.sign-in-btn').addEventListener('click', async (e) => {
             adminCredentials.role = 'Admin';
             role = 'Admin';
             
-            // Write admin data to firebase
+            // Write data to firebase
             await set(ref(db, 'users/admin/' + fullName), {
                 userId: adminCredentials.userId,
                 fullName: adminCredentials.fullName,

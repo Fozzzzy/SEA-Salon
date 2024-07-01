@@ -1,73 +1,84 @@
-let reviewList =  JSON.parse(localStorage.getItem('reviews')) || [];
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import { getDatabase, ref, set, push, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
+// Web Firebase configuration
+const firebaseConfig = {
+    apiKey: "AIzaSyBkbI2FtxAQJwkITY22ige80ZxvTPeUHro",
+    authDomain: "seasalon-34f4b.firebaseapp.com",
+    projectId: "seasalon-34f4b",
+    storageBucket: "seasalon-34f4b.appspot.com",
+    messagingSenderId: "707554349089",
+    appId: "1:707554349089:web:1726668d9e4f9606361360",
+    measurementId: "G-KHBE00KB82",
+    databaseURL: "https://seasalon-34f4b-default-rtdb.asia-southeast1.firebasedatabase.app/"
+};
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+
+// Get DOM elements
 const buttonElement = document.querySelector('.write-review-btn');
 const inputElement = document.querySelector('.review-input');
 const reviewerNameElement = document.querySelector('.reviewer-name');
 const ratingElement = document.querySelector('.review-rating');
 const reviewListContainer = document.querySelector('.review-list');
 
+// Event listeners for write review
 buttonElement.addEventListener('click', addReview);
 
-renderReview();
+inputElement.addEventListener('keydown', (event) => {
+    if (event.key === 'Enter') {
+        addReview(event);
+    }
+});
 
-function renderReview() {
-    let reviewHTML = '';
-    reviewList.forEach((reviewObject) => {
-        const review = reviewObject.review;
-        const reviewerName = reviewObject.name;
-        const rating = reviewObject.rating;
-        const date = reviewObject.date;
+// Call renderReviews initially to load existing reviews
+renderReviews();
 
-        let tempHTML = `
-        <div class="review-content-container">
-            <div class="first-row">
-                <p class="name">${reviewerName},</p>
-                <p class="currDate">${date}</p>
-            </div>
-            <p class="rating">${rating} / 5 &#x2B50;&#xFE0F;</p>
-            <div class="second-row">
-                <p class="review-content">${review}</p>
-            </div>
-        </div>`;
+// Function to render reviews
+function renderReviews() {
+    const reviewsRef = ref(db, 'reviews');
+    onValue(reviewsRef, (snapshot) => {
+        const reviews = snapshot.val();
+        let reviewHTML = '';
 
-        reviewHTML += tempHTML;
+        if (reviews) {
+            Object.values(reviews).forEach((reviewObject) => {
+                const review = reviewObject.review;
+                const reviewerName = reviewObject.name;
+                const rating = reviewObject.rating;
+                const date = reviewObject.date;
+
+                let tempHTML = `
+                <div class="review-content-container">
+                    <div class="first-row">
+                        <p class="name">${reviewerName},</p>
+                        <p class="currDate">${date}</p>
+                    </div>
+                    <p class="rating">${rating} / 5 &#x2B50;&#xFE0F;</p>
+                    <div class="second-row">
+                        <p class="review-content">${review}</p>
+                    </div>
+                </div>`;
+
+                reviewHTML += tempHTML;
+            });
+        }
+        reviewListContainer.innerHTML = reviewHTML;
     });
+};
 
-    reviewListContainer.innerHTML = reviewHTML;
+// Functiuon to validate rating input
+function validateRating(rating) {
+    const parsedRating = Number(rating);
+    if (parsedRating >= 1 && parsedRating <= 5) {
+        return true; 
+    }
+    return false; 
 }
 
-function addReview() {
-    let reviewText = inputElement.value.trim();
-    let reviewerName = reviewerNameElement.value.trim();
-    let rating = ratingElement.value.trim();
-
-    if (!reviewText || !reviewerName || !rating) {
-        alert('Please fill in all fields: Review, Name, and Rating.');
-        return;
-    }
-
-    if (!validateRating(rating)) {
-        alert('Please enter a valid rating between 1 and 5.');
-        return;
-    }
-
-    const newReview = {
-        name: reviewerName,
-        rating: rating,
-        date: getCurrentDate(),
-        review: reviewText
-    };
-
-    reviewList.push(newReview);
-
-    inputElement.value = '';
-    reviewerNameElement.value = '';
-    ratingElement.value = '';
-
-    localStorage.setItem('reviews', JSON.stringify(reviewList));
-    renderReview();
-}
-
+// Function to get current date in YYYY-MM-DD format
 function getCurrentDate() {
     const currentDate = new Date();
     
@@ -78,26 +89,50 @@ function getCurrentDate() {
     return `${year}-${month}-${day}`;
 }
 
-function validateRating(rating) {
-    const parsedRating = Number(rating);
+// Function to add review and write to database
+async function addReview(e) {
+    e.preventDefault();
 
-    if (parsedRating >= 1 && parsedRating <= 5) {
-        return true; 
+    let reviewText = inputElement.value.trim();
+    let reviewerName = reviewerNameElement.value.trim();
+    let rating = ratingElement.value.trim();
+
+    // Validate empty input
+    if (!reviewText || !reviewerName || !rating) {
+        alert('Please fill in all fields: Review, Name, and Rating.');
+        return;
     }
-    return false; 
-}
 
-inputElement.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter') {
-        addReview();
+    // Call validate rating (1-5)
+    if (!validateRating(rating)) {
+        alert('Please enter a valid rating between 1 and 5.');
+        return;
     }
-});
+    
+    console.log('Button clicked. Trying to write data to Firebase...');
 
-//FUNCTION TO RESET FROM ADMIN
-function resetLocalStorage() {
-    localStorage.removeItem('reviews');
-    reviewList = []; 
-    renderReview(); 
+    try {
+        // Write user data to Firebase
+        const reviewsRef = ref(db, 'reviews');
+        const newReviewRef = push(reviewsRef);
+
+        await set(newReviewRef, {
+            name: reviewerName,
+            rating: rating,
+            date: getCurrentDate(),
+            review: reviewText
+        });
+
+        console.log('Review added successfully');
+
+        // Clear input fields after successful submission
+        inputElement.value = '';
+        reviewerNameElement.value = '';
+        ratingElement.value = '';
+
+        // Re-render reviews to include the new one
+        renderReviews();
+    } catch (error) {
+        console.error('Error adding review:', error);
+    }
 }
-
-// resetLocalStorage()
