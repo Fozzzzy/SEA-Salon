@@ -1,6 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
-import { getAuth, signOut } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import { getDatabase, onValue, set, push, ref, get } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
 
 // Web Firebase configuration
 const firebaseConfig = {
@@ -19,7 +18,6 @@ const app = initializeApp(firebaseConfig);
 
 // Get reference to database services
 const db = getDatabase(app);
-const auth = getAuth(app);
 
 // Check Admin
 const adminCredentials = {
@@ -33,75 +31,57 @@ const adminCredentials = {
 let userIdIncrement = localStorage.getItem('userId') || 1;
 let role;
 
-// Sign-up
-document.querySelector('.sign-in-btn').addEventListener('click', async (e) => {
+// Sign Up move Window
+document.querySelector('.register-btn').addEventListener('click', () => {
+    window.location.href = 'register.html';
+    console.log("Hello");
+});
+
+// Login
+document.querySelector('#login').addEventListener('click', async (e) => {
     e.preventDefault();
 
-    const fullName = document.getElementById('full-name').value;
     const email = document.getElementById('email').value;
-    const phoneNumber = document.getElementById('phone-number').value.trim();
     const password = document.getElementById('password').value;
 
     // Validate input
-    if (!fullName || !email || !phoneNumber || !password) {
+    if (!email || !password) {
         alert('Please fill in all required fields.');
-        return; 
+        return;
     }
 
-    console.log('Button clicked. Trying to write data to Firebase...');
-    document.getElementById('loading-screen').style.display = 'flex';
-
-    try {
-        // Check if the entered credentials match the admin credentials
-        if (fullName === adminCredentials.fullName && email === adminCredentials.email && phoneNumber === adminCredentials.phoneNumber && password === adminCredentials.password) {
-             // Declare userId and role for Admin account
-            adminCredentials.userId = 0;
-            adminCredentials.role = 'Admin';
-            role = 'Admin';
-            
-            // Write data to firebase
-            await set(ref(db, 'users/admin/' + fullName), {
-                userId: adminCredentials.userId,
-                fullName: adminCredentials.fullName,
-                email: adminCredentials.email,
-                phoneNumber: adminCredentials.phoneNumber,
-                password: adminCredentials.password,
-                role: adminCredentials.role
-            });
-            localStorage.setItem('loginMessage', `Admin Login Successful, Welcome ${fullName}!`);
-        } else { 
-            const userId = userIdIncrement;
-            role = 'Customer';
-
-            // Write user data to Firebase
-            await set(ref(db, 'users/customers/' + fullName), {
-                userId: userId,
-                fullName: fullName,
-                email: email,
-                phoneNumber: phoneNumber,
-                password: password,
-                role: role
-            });
-            // Increment userId for next user
-            userIdIncrement += 1;
-
-            window.location.href = 'home.html';
-            localStorage.setItem('userId', userIdIncrement);
-            localStorage.setItem('loginMessage', `Login Successful, Welcome ${fullName}!`);
-        }
-        setTimeout(() => {
-            document.getElementById('loading-screen').style.display = 'none';
-            // Redirect to home page
-            window.location.href = 'home.html';
-        }, 2000); 
-
-        // Save role (customers/admin)
-        localStorage.setItem('role', role);
-    } catch (error) {
-        // Check if error writing to database
-        console.error('Error writing to Firebase Realtime Database:', error);
-        alert('Login failed. Please try again.');
-        document.getElementById('loading-screen').style.display = 'none';
-    }
+    // Attempt to login
+    await loginUser(email, password);
 });
 
+async function loginUser(email, password) {
+    try {
+        const usersRef = ref(db, 'users/customers');
+        const snapshot = await get(usersRef);
+
+        if (snapshot.exists()) {
+            const users = snapshot.val();
+            for (const userKey in users) {
+                if (users.hasOwnProperty(userKey)) {
+                    const user = users[userKey];
+                    if (user.email === email && user.password === password) {
+                        // Login successful
+                        localStorage.setItem('userId', user.userId);
+                        localStorage.setItem('role', user.role);
+                        localStorage.setItem('loginMessage', `Login Successful, Welcome ${user.fullName}!`);
+                        window.location.href = 'home.html'; // Redirect to home page
+                        return true;
+                    }
+                }
+            }
+        }
+        // If no matching user or incorrect credentials
+        alert('Invalid email or password. Please try again.');
+        return false;
+        
+    } catch (error) {
+        console.error('Error logging in:', error);
+        alert('Login failed. Please try again.');
+        return false;
+    }
+}

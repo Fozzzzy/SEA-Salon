@@ -165,3 +165,6 @@ async function clearReservations() {
         console.error('Error clearing reservations from Firebase:', error);
     }
 }
+
+// Check if date chosen is in the past
+let inputDate = new Date(dataReserve)

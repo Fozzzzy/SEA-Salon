@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Register</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
 
     <!-- Poppins -->
@@ -33,29 +33,36 @@
     <div class="box">
         <div class="form">
             <header>
-                <h1>Login</h1>
+                <h1>Sign In</h1>
             </header>
-            <div class="input-box">
-                <p>Email:</p>
-                <input type="text" value="" id="email" placeholder="Enter your email">
-            </div>
-            <div class="input-box">
-                <p>Password</p>
-                <input type="password" value="" id="password" placeholder="Enter password">
-            </div>
-            <div class="auth-btn-container">
-                <button class="register-btn">
-                    SIGN UP
-                </button>
-                <button id="login" class="sign-in-btn">
-                    LOGIN
-                </button>
-            </div>
+            <form>
+                <div class="input-box">
+                    <p>Full Name:</p>
+                    <input type="text" value="" id="full-name" placeholder="Enter your full name" required>
+                </div>
+                <div class="input-box">
+                    <p>Email:</p>
+                    <input type="text" value="" id="email" placeholder="Enter your email" required>
+                </div>
+                <div class="input-box">
+                    <p>Phone Number:</p>
+                    <input type="text" value="" id="phone-number" placeholder="Enter your phone number" required>
+                </div>
+                <div class="input-box">
+                    <p>Password</p>
+                    <input type="password" value="" id="password" placeholder="Enter password" required>
+                </div>
+                <div class="auth-btn-container">
+                    <button class="register-btn">
+                        SIGN UP
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
     <div id="loading-screen">
         <div class="loader"></div>
     </div>
-    <script type="module" src="js/login.js"></script>
+    <script type="module" src="js/register.js"></script>
 </body>
 </html>
