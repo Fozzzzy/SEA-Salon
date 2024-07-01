@@ -465,6 +465,12 @@ footer {
     text-align: right;
 }
 
+@media (max-width: 1400px) {
+    .service-image {
+        height: 35rem;
+    }
+}
+
 @media (max-width: 1200px) { 
     .slogan-container h1 {
         font-size: 30px;
@@ -481,6 +487,10 @@ footer {
 
     .logo-img {
         max-width: 175px; 
+    }
+
+    .service-image {
+        height: 20rem;
     }
 
     .logout-btn {
@@ -514,6 +524,7 @@ footer {
         padding: 6px 20px;
         font-size: 13px;
     }
+
 
     .footer-left p {
         font-size: 14px;
