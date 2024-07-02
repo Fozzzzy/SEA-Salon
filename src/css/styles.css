@@ -6,10 +6,6 @@
     padding: 0;
 }
 
-:root {
-    color-scheme: light only;
-}
-
 html {
     scroll-behavior: smooth;
 }
@@ -800,5 +796,11 @@ footer {
 @media (max-width: 450px) {
     .slogan-container h2 {
         font-size: 13px;
+    }
+}
+
+@media (prefers-color-scheme: dark) {
+    header{
+        background: rgb(255, 255, 255);
     }
 }
