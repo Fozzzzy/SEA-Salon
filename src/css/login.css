@@ -153,4 +153,9 @@ input:focus {
         transform: scale(0.6);
         height: 60px;
     }
+
+    header, .have-account-row {
+        transform: scale(0.6);
+        margin-top: 0;
+    }
 }
