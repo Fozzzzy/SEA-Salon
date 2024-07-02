@@ -150,6 +150,7 @@ input:focus {
 
 @media (max-width: 480px) { 
     .input-box, .auth-btn-container{
-        transform: scale(0.5);
+        transform: scale(0.6);
+        height: 60px;
     }
 }
