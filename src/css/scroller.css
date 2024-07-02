@@ -157,11 +157,11 @@
 
 @media (max-width: 420px) {
     .item {
-        transform: scale(0.2);
-        left: max(0px * 8, 100%);
+        transform: scale(0.3);
+        left: max(43px * 8, 100%);
     }
 
     .wrapper {
-        height: 85px;
+        height: 125px;
     }
 }
