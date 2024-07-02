@@ -21,7 +21,6 @@ const db = getDatabase(app);
 const buttonElement = document.querySelector('.write-review-btn');
 const inputElement = document.querySelector('.review-input');
 const reviewerNameElement = document.querySelector('.reviewer-name');
-const ratingElement = document.querySelector('.review-rating');
 const reviewListContainer = document.querySelector('.review-list');
 
 // Event listeners for write review
@@ -69,14 +68,20 @@ function renderReviews() {
     });
 };
 
-// Functiuon to validate rating input
-function validateRating(rating) {
-    const parsedRating = Number(rating);
-    if (parsedRating >= 1 && parsedRating <= 5) {
-        return true; 
-    }
-    return false; 
+
+const ratingInputs = document.querySelectorAll('input[name="rate"]');
+// Function to get selected rating value
+function getSelectedRating() {
+    let ratingValue = '';
+    ratingInputs.forEach(radio => {
+        if (radio.checked) {
+            ratingValue = radio.value;
+            console.log(`Selected rating: ${ratingValue}`);
+        }
+    });
+    return ratingValue;
 }
+
 
 // Function to get current date in YYYY-MM-DD format
 function getCurrentDate() {
@@ -95,17 +100,11 @@ async function addReview(e) {
 
     let reviewText = inputElement.value.trim();
     let reviewerName = reviewerNameElement.value.trim();
-    let rating = ratingElement.value.trim();
+    let rating = getSelectedRating();
 
     // Validate empty input
     if (!reviewText || !reviewerName || !rating) {
         alert('Please fill in all fields: Review, Name, and Rating.');
-        return;
-    }
-
-    // Call validate rating (1-5)
-    if (!validateRating(rating)) {
-        alert('Please enter a valid rating between 1 and 5.');
         return;
     }
     
@@ -128,7 +127,11 @@ async function addReview(e) {
         // Clear input fields after successful submission
         inputElement.value = '';
         reviewerNameElement.value = '';
-        ratingElement.value = '';
+
+        // Clear the rating selection
+        ratingInputs.forEach(radio => {
+            radio.checked = false;
+        });
 
         // Re-render reviews to include the new one
         renderReviews();
