@@ -82,6 +82,9 @@ async function loginUser(email, password) {
 
         // If incorrect credentials
         alert('Invalid email or password. Please try again.');
+        // Clear input fields
+        document.getElementById('email').value = '';
+        document.getElementById('password').value = '';
         return false;
         
     } catch (error) {

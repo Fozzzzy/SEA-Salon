@@ -63,6 +63,12 @@ document.querySelector('.register-btn').addEventListener('click', async (e) => {
                     const customer = customers[customerKey];
                     if (customer.email === email) {
                         alert('Email already exists. Please use a different email.');
+                        // Clear input fields
+                        document.getElementById('full-name').value = '';
+                        document.getElementById('email').value = '';
+                        document.getElementById('phone-number').value = '';
+                        document.getElementById('password').value = '';
+                        document.getElementById('loading-screen').style.display = 'none';
                         document.getElementById('loading-screen').style.display = 'none';
                         return;
                     }
@@ -73,6 +79,12 @@ document.querySelector('.register-btn').addEventListener('click', async (e) => {
         // Check if email already exists in admin
         if (email === 'thomas.n@compfest.id') {
             alert('Email already exists. Please use a different email.');
+            document.getElementById('loading-screen').style.display = 'none';
+            // Clear input fields
+            document.getElementById('full-name').value = '';
+            document.getElementById('email').value = '';
+            document.getElementById('phone-number').value = '';
+            document.getElementById('password').value = '';
             document.getElementById('loading-screen').style.display = 'none';
             return;
         };
