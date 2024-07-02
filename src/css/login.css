@@ -58,7 +58,7 @@ p {
 }
 
 input {
-    min-width: 40vh;
+    width: 100%;
     padding: 13px;
     position: relative;
     background-color: rgb(230, 230, 230);
@@ -121,4 +121,12 @@ input:focus {
 
 .register-btn:active {
     opacity: 0.8;
+}
+
+.have-account-row {
+    margin-top: 10px;
+}
+
+.login-link {
+    color: rgb(0, 174, 255);
 }
