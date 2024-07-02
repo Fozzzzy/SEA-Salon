@@ -1,38 +1,38 @@
 # SEA-Salon
 > SEA 16 Technical Challenge: SEA Salon
-
+  
 ## About
-Welcome to the SEA Salon Website README! This project is a web-based reservation system for Sea Salon, designed to manage its rapidly growing clientele with seamless booking, customer reviews, and an efficient reservation system.
+Welcome to the SEA Salon Website README! This project is a web-based reservation system for Sea Salon, designed to manage its rapidly growing clientele with seamless booking, customer reviews, and an efficient reservation system. 
+  
 
 ## Prerequisites
-* A Web Browser
+* A Web Browser  
 
-## How to Run
+
+## How to Run  
 You can access the deployed website by visiting the following URL: [SEA Salon](https://sea-salon-bice.vercel.app/) 
-
 
 GitHub repository: 
 ```sh
 https://github.com/Fozzzzy/SEA-Salon.git
-```
+```  
 
 ### Note on Dark Mode Compatibility
 Please note that some images and colors on the website may not load properly when the device is in dark mode. 
 For the best experience, it is recommended to use the SEA Salon Web on light mode.
+  
 
 ## Features & Usage
 
 ### Authentication System (Register/Login)
 1. Users are placed on the home page initially.
-2. Login (to become a member) is required to access customer reviews and booking page.
-3. New users can register before logging in.
+2. Register (to become a member) and logging in is required to access customer reviews and booking page, New users can register before logging in.
 
 ### Customer Booking
-1. Go to the home page.
-2. Log in to access the reservation and booking features.
-3. Navigate to the reservations page via the "Bookings" link or the "Book Now" / "Book Your Visit" button.
-4. Fill in the required details: name, phone number, service, date, and time.
-5. Click the "Book Now" button to submit your appointment.
+1. Log in to access the reservation and booking features.
+2. Navigate to the reservations page via the "Bookings" link or the "Book Now" / "Book Your Visit" button.
+3. Fill in the required details: name, phone number, service, date, and time.
+4. Click the "Book Now" button to submit your appointment.
 
 ### Customer Review
 1. Log in to access the customer reviews page. (Requiring users to log in ensures the reviews are genuine and discourages spam.)
@@ -44,6 +44,7 @@ For the best experience, it is recommended to use the SEA Salon Web on light mod
 2. Navigate to the reservation page via the "Bookings" link or the "Book Now" / "Book Your Visit" button.
 3. View and delete bookings/past reservations as needed.
 
+  
 
 ## Technologies used
 * **Frontend**: HTML, CSS, JavaScript
