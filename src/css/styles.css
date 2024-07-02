@@ -656,7 +656,7 @@ footer {
 
 @media (max-width: 768px) {
     .nav-menu li {
-        margin: 8px 0; 
+        margin: 10px 0; 
     }
 
     .nav-menu li a {
@@ -713,7 +713,7 @@ footer {
     }
 
     .nav-menu li {
-        margin: 3px 0; 
+        margin: 6px 0; 
     }
 
     .nav-menu li a {
