@@ -23,7 +23,6 @@ body {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-
     margin-block: 20px;
     margin-inline: 50px;
     backdrop-filter: blur(20px);
@@ -31,8 +30,6 @@ body {
     min-width: 30vw;
     min-height: 70vh;
     padding: 30px 40px;
-    
-
     border: 2px solid rgb(255, 255, 255);
     border-radius: 1rem;
     box-shadow: 10px 10px 100px 5px rgb(0, 10, 10);
@@ -137,4 +134,22 @@ input:focus {
 
 .login-link {
     color: rgb(0, 174, 255);
+}
+
+@media (max-width: 768px) { 
+    .input-box, .auth-btn-container{
+        transform: scale(0.8);
+    }
+}
+
+@media (max-width: 576px) { 
+    .input-box, .auth-btn-container{
+        transform: scale(0.7);
+    }
+}
+
+@media (max-width: 480px) { 
+    .input-box, .auth-btn-container{
+        transform: scale(0.5);
+    }
 }
