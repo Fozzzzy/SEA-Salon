@@ -802,4 +802,8 @@ footer {
     .slogan-container h2 {
         font-size: 13px;
     }
+
+    .nav-menu li {
+        margin: 20px 0;
+    }
 }
