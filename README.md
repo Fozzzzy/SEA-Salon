@@ -48,4 +48,4 @@ For the best experience, it is recommended to use the SEA Salon Web on light mod
 
 ## Technologies used
 * **Frontend**: HTML, CSS, JavaScript
-* **Backend:** Firebase
+* **Backend:** Firebase (Database)
