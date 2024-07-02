@@ -16,6 +16,10 @@ GitHub repository:
 https://github.com/Fozzzzy/SEA-Salon.git
 ```
 
+### Note on Dark Mode Compatibility
+Please note that some images and colors on the website may not load properly when the device is in dark mode. 
+For the best experience, it is recommended to use the SEA Salon Web on light mode.
+
 ## Features & Usage
 
 ### Authentication System (Register/Login)
