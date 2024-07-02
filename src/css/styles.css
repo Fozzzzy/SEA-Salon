@@ -657,7 +657,7 @@ footer {
 
 @media (max-width: 768px) {
     .nav-menu li {
-        margin: 10px 0; 
+        margin: 18px 0; 
     }
 
     .nav-menu li a {
@@ -708,13 +708,12 @@ footer {
         min-height: 40vh;
     }
 
-
     header {
         padding-inline: 15px;
     }
 
     .nav-menu li {
-        margin: 8px 0; 
+        margin: 12px 0; 
     }
 
     .nav-menu li a {
