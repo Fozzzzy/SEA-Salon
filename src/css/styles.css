@@ -417,7 +417,7 @@ section#contacts {
 footer {
     padding-top: 45px;
     padding-bottom: 50px;
-    padding-inline: 7rem;
+    padding-inline: 5rem;
     height: 200px;
     background-color: #ffffff;
     border-top: 1px solid #ccc; 
@@ -428,6 +428,7 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 50px;
 }
 
 .footer-right {
