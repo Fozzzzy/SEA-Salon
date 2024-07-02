@@ -47,9 +47,9 @@ bookNowButton.addEventListener('click', addReservation);
 // Event listener for clearing past reservation
 clearButton.addEventListener('click', clearReservations);
 
-// Function to render reservations
-let reservationNumber;
 
+let reservationNumber;
+// Function to render reservations
 function renderReservations() {
     const reservationsRef = ref(db, 'reservations');
     onValue(reservationsRef, (snapshot) => {

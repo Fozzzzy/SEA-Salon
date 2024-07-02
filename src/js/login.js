@@ -28,7 +28,7 @@ document.querySelector('.register-btn').addEventListener('click', () => {
     console.log("Hello");
 });
 
-// Login
+// Login button event listener
 document.querySelector('#login').addEventListener('click', async (e) => {
     e.preventDefault();
 
@@ -45,6 +45,7 @@ document.querySelector('#login').addEventListener('click', async (e) => {
     await loginUser(email, password);
 });
 
+// Function to login user
 async function loginUser(email, password) {
     try {
         const customersRef = ref(db, 'users/customers');
