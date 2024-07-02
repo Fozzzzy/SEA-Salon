@@ -19,9 +19,6 @@ const app = initializeApp(firebaseConfig);
 // Get reference to database services
 const db = getDatabase(app);
 
-// Generate userId from 1 for every new user signing in
-let userIdIncrement = localStorage.getItem('userId') || 1;
-
 // Sign Up move Window
 document.querySelector('.register-btn').addEventListener('click', () => {
     window.location.href = 'register.html';
@@ -54,7 +51,6 @@ async function loginUser(email, password) {
         // Check in admin
         if (email === 'thomas.n@compfest.id' && password === 'Admin123') {
             // Admin login successful
-            localStorage.setItem('userId', 'admin');
             localStorage.setItem('role', 'Admin');
             localStorage.setItem('loginMessage', 'Admin Login Successful');
             window.location.href = 'home.html'; // Redirect to home page
@@ -69,7 +65,6 @@ async function loginUser(email, password) {
                     const customer = customers[customerKey];
                     if (customer.email === email && customer.password === password) {
                         // Customer login successful
-                        localStorage.setItem('userId', customer.userId);
                         localStorage.setItem('role', 'Customer');
                         localStorage.setItem('loginMessage', `Login Successful, Welcome ${customer.fullName}!`);
                         window.location.href = 'home.html'; // Redirect to home page
@@ -78,7 +73,6 @@ async function loginUser(email, password) {
                 }
             }
         }
-        
 
         // If incorrect credentials
         alert('Invalid email or password. Please try again.');
