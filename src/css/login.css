@@ -42,13 +42,21 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
 }
 
 h1 {
     font-size: 38px;
     text-shadow: 0 0 7px rgb(255, 255, 255);
-    margin-bottom: 1rem;
     letter-spacing: 3px;
+}
+
+h4 {
+    margin-bottom: 1rem;
+    font-weight: 400;
+    font-size: 15px;
+    color: rgb(215, 250, 255);
+    font-family: 'Poppins', 'Helvetica Neue', Helvetica;
 }
 
 p {
