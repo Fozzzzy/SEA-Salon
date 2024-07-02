@@ -201,3 +201,33 @@ h2 {
     }
 }
 
+@media (max-width: 480px) {
+    .header-row h1 {
+        font-size: 1rem; 
+    }
+
+    p {
+        font-size: 11px;
+    }
+    
+    .reviewer-name, .review-rating {
+        min-height: 25px;
+        padding: 1px 1rem 1px 10px;
+        font-size: 9px;
+        margin-bottom: 10px;
+    }
+
+    .review-input {
+        min-height: 25px;
+        font-size: 10px;
+    }
+
+    .write-review-btn {
+        font-size: 12px;
+    }
+
+    h2 {
+        font-size: 9px;
+    }
+}   
+    

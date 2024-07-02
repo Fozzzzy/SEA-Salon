@@ -707,6 +707,11 @@ footer {
         min-height: 40vh;
     }
 
+
+    header {
+        padding-inline: 15px;
+    }
+
     .nav-menu li {
         margin: 3px 0; 
     }
@@ -781,5 +786,15 @@ footer {
 
     .book-your-visit-btn:active {
         transform: scale(0.6);
+    }
+
+    footer {
+        padding-inline: 2rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .slogan-container h2 {
+        font-size: 13px;
     }
 }
