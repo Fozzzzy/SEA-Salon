@@ -115,6 +115,7 @@ document.querySelector('.register-btn').addEventListener('click', async (e) => {
             document.getElementById('loading-screen').style.display = 'none';
             // Redirect to login page
             window.location.href = 'login.html';
+            alert('Account registered Successfully');
         }, 2000); 
 
         // Save role (customers/admin)

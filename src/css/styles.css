@@ -155,7 +155,7 @@ section {
 }
 
 section#home {
-    background: url(../images/home_1.jpg);
+    background: url(../../public/images/home_1.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
@@ -323,7 +323,7 @@ section#profile {
 }
 
 section#contacts {
-    background-image: url(/images/wash.jpg);
+    background-image: url(../../public/images/wash.jpg);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
